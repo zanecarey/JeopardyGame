@@ -1,7 +1,6 @@
 package com.example.zane.jeopardygame;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -60,9 +59,56 @@ public class GameScreenActivity extends AppCompatActivity {
     TextView cat1Q4textView;
     @BindView(R.id.cat1Q5_textView)
     TextView cat1Q5textView;
-
-    //running total score of game
-    public static int TOTAL_SCORE = 0;
+    @BindView(R.id.cat1Q1_cardView)
+    CardView cat1Q1CardView;
+    @BindView(R.id.cat1Q2_cardView)
+    CardView cat1Q2CardView;
+    @BindView(R.id.cat1Q3_cardView)
+    CardView cat1Q3CardView;
+    @BindView(R.id.cat1Q4_cardView)
+    CardView cat1Q4CardView;
+    @BindView(R.id.cat1Q5_cardView)
+    CardView cat1Q5CardView;
+    @BindView(R.id.cat2Q1_textView)
+    TextView cat2Q1TextView;
+    @BindView(R.id.cat2Q1_cardView)
+    CardView cat2Q1CardView;
+    @BindView(R.id.cat2Q2_textView)
+    TextView cat2Q2TextView;
+    @BindView(R.id.cat2Q2_cardView)
+    CardView cat2Q2CardView;
+    @BindView(R.id.cat2Q3_textView)
+    TextView cat2Q3TextView;
+    @BindView(R.id.cat2Q3_cardView)
+    CardView cat2Q3CardView;
+    @BindView(R.id.cat2Q4_textView)
+    TextView cat2Q4TextView;
+    @BindView(R.id.cat2Q4_cardView)
+    CardView cat2Q4CardView;
+    @BindView(R.id.cat2Q5_textView)
+    TextView cat2Q5TextView;
+    @BindView(R.id.cat2Q5_cardView)
+    CardView cat2Q5CardView;
+    @BindView(R.id.cat3Q1_textView)
+    TextView cat3Q1TextView;
+    @BindView(R.id.cat3Q1_cardView)
+    CardView cat3Q1CardView;
+    @BindView(R.id.cat3Q2_textView)
+    TextView cat3Q2TextView;
+    @BindView(R.id.cat3Q2_cardView)
+    CardView cat3Q2CardView;
+    @BindView(R.id.cat3Q3_textView)
+    TextView cat3Q3TextView;
+    @BindView(R.id.cat3Q3_cardView)
+    CardView cat3Q3CardView;
+    @BindView(R.id.cat3Q4_textView)
+    TextView cat3Q4TextView;
+    @BindView(R.id.cat3Q4_cardView)
+    CardView cat3Q4CardView;
+    @BindView(R.id.cat3Q5_textView)
+    TextView cat3Q5TextView;
+    @BindView(R.id.cat3Q5_cardView)
+    CardView cat3Q5CardView;
 
     private ArrayList<String> categoryTitles = new ArrayList<>();
     private ArrayList<Integer> categoryIDs = new ArrayList<>();
@@ -80,6 +126,9 @@ public class GameScreenActivity extends AppCompatActivity {
     private ArrayList<String> cat3Questions = new ArrayList<>();
     private ArrayList<String> cat3Answers = new ArrayList<>();
     private ArrayList<Integer> cat3Values = new ArrayList<>();
+
+    //running total score of game
+    public static int TOTAL_SCORE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +230,8 @@ public class GameScreenActivity extends AppCompatActivity {
             });
         }
     }
-//    private void initClues(int category){
+
+    //    private void initClues(int category){
 //        //category 1
 //        if(category == 0){
 //            cat1Q1textView.
@@ -195,13 +245,11 @@ public class GameScreenActivity extends AppCompatActivity {
         cat3TitleTextView.append(categoryTitles.get(2));
     }
 
-    @OnClick({R.id.cat1Q1_textView, R.id.cat1Q2_textView, R.id.cat1Q3_textView, R.id.cat1Q4_textView, R.id.cat1Q5_textView})
+    @OnClick({R.id.cat1Q1_textView, R.id.cat1Q2_textView, R.id.cat1Q3_textView, R.id.cat1Q4_textView, R.id.cat1Q5_textView,
+                R.id.cat2Q1_textView, R.id.cat2Q2_textView, R.id.cat2Q3_textView, R.id.cat2Q4_textView, R.id.cat2Q5_textView,
+                R.id.cat3Q1_textView, R.id.cat3Q2_textView, R.id.cat3Q3_textView, R.id.cat3Q4_textView, R.id.cat3Q5_textView, })
     public void onViewClicked(View view) {
-//        Intent intent = new Intent(GameScreenActivity.this, QuestionDisplayActivity.class);
-//        intent.putExtra("question", cat1Questions.get(0));
-//        intent.putExtra("answer", cat1Answers.get(0));
-//        intent.putExtra("value", cat1Values.get(0));
-//        startActivity(intent);
+
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
         builder.setTitle("Question");
@@ -209,40 +257,103 @@ public class GameScreenActivity extends AppCompatActivity {
         final EditText editText = new EditText(this);
         builder.setView(editText);
         String rightAnswer = "";
-
+        int qValue = 0;
         switch (view.getId()) {
             case R.id.cat1Q1_textView:
                 builder.setMessage(cat1Questions.get(0));
                 rightAnswer = cat1Answers.get(0).toLowerCase();
+                qValue = cat1Values.get(0);
                 break;
             case R.id.cat1Q2_textView:
                 builder.setMessage(cat1Questions.get(1));
                 rightAnswer = cat1Answers.get(1).toLowerCase();
+                qValue = cat1Values.get(1);
                 break;
             case R.id.cat1Q3_textView:
                 builder.setMessage(cat1Questions.get(2));
                 rightAnswer = cat1Answers.get(2).toLowerCase();
+                qValue = cat1Values.get(2);
                 break;
             case R.id.cat1Q4_textView:
                 builder.setMessage(cat1Questions.get(3));
                 rightAnswer = cat1Answers.get(3).toLowerCase();
+                qValue = cat1Values.get(3);
                 break;
             case R.id.cat1Q5_textView:
                 builder.setMessage(cat1Questions.get(4));
                 rightAnswer = cat1Answers.get(4).toLowerCase();
+                qValue = cat1Values.get(4);
+                break;
+            case R.id.cat2Q1_textView:
+                builder.setMessage(cat2Questions.get(0));
+                rightAnswer = cat1Answers.get(0).toLowerCase();
+                qValue = cat2Values.get(0);
+                break;
+            case R.id.cat2Q2_textView:
+                builder.setMessage(cat2Questions.get(1));
+                rightAnswer = cat1Answers.get(1).toLowerCase();
+                qValue = cat2Values.get(1);
+                break;
+            case R.id.cat2Q3_textView:
+                builder.setMessage(cat2Questions.get(2));
+                rightAnswer = cat1Answers.get(2).toLowerCase();
+                qValue = cat2Values.get(2);
+                break;
+            case R.id.cat2Q4_textView:
+                builder.setMessage(cat2Questions.get(3));
+                rightAnswer = cat1Answers.get(3).toLowerCase();
+                qValue = cat2Values.get(3);
+                break;
+            case R.id.cat2Q5_textView:
+                builder.setMessage(cat2Questions.get(4));
+                rightAnswer = cat1Answers.get(4).toLowerCase();
+                qValue = cat2Values.get(4);
+                break;
+            case R.id.cat3Q1_textView:
+                builder.setMessage(cat3Questions.get(0));
+                rightAnswer = cat3Answers.get(0).toLowerCase();
+                qValue = cat3Values.get(0);
+                break;
+            case R.id.cat3Q2_textView:
+                builder.setMessage(cat3Questions.get(1));
+                rightAnswer = cat3Answers.get(1).toLowerCase();
+                qValue = cat3Values.get(1);
+                break;
+            case R.id.cat3Q3_textView:
+                builder.setMessage(cat3Questions.get(2));
+                rightAnswer = cat3Answers.get(2).toLowerCase();
+                qValue = cat3Values.get(2);
+                break;
+            case R.id.cat3Q4_textView:
+                builder.setMessage(cat3Questions.get(3));
+                rightAnswer = cat3Answers.get(3).toLowerCase();
+                qValue = cat3Values.get(3);
+                break;
+            case R.id.cat3Q5_textView:
+                builder.setMessage(cat3Questions.get(4));
+                rightAnswer = cat3Answers.get(4).toLowerCase();
+                qValue = cat3Values.get(4);
                 break;
         }
 
         final String correct = rightAnswer;
+        final int val = qValue;
+
         builder.setPositiveButton("Ok", (dialogInterface, i) -> {
-            String answer = editText.getText().toString();
-            if(answer.equals(correct)){
-                Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
-                TOTAL_SCORE += cat1Values.get(0);
-                totalScoreValueTextView.setText(""+TOTAL_SCORE);
+
+            String answer = editText.getText().toString().toLowerCase();
+            if (answer.equals(correct)) {
+                //Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+                TOTAL_SCORE += val;
+                totalScoreValueTextView.setText("" + TOTAL_SCORE);
             } else {
-                Toast.makeText(this, "Incorrect! " + answer, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Incorrect! " + answer, Toast.LENGTH_SHORT).show();
+                TOTAL_SCORE -= val;
+                totalScoreValueTextView.setText("" + TOTAL_SCORE);
             }
+            //remove question from pool after submission, change coloring
+            cat1Q1textView.setTextColor(Color.GRAY);
+            cat1Q1textView.setEnabled(false);
         });
         builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
 

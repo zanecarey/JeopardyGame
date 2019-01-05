@@ -6,6 +6,19 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:textColor">#fff200</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textViewStyle">@style/textViewStyle</item>
     </style>
 
+    <style name="textViewStyle" parent="android:Widget.TextView">
+        <item name="android:background">@color/jeopardyBlue</item>
+    </style>
+
+    <style name="AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">#fff200</item>
+        <item name="android:textColorPrimary">#595959</item>
+        <item name="android:background">#000</item>
+    </style>
 </resources>

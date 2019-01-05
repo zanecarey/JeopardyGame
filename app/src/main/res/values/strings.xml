@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JeopardyGame</string>
+    <string name="score"><u>Score:</u></string>
+</resources>

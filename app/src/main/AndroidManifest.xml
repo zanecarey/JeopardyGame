@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameScreenActivity" />
-        <activity android:name=".QuestionDisplayActivity"></activity>
+        <activity android:name=".QuestionDisplayActivity" />
+        <activity android:name=".PrepareGameActivity"></activity>
     </application>
 
 </manifest>

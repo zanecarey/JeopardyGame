@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zane.jeopardygame.model.Categories;
 import com.example.zane.jeopardygame.model.ClueResults;
@@ -29,8 +28,6 @@ public class GameScreenActivity extends AppCompatActivity {
 
     //base url
     private static final String BASE_URL = "http://jservice.io/";
-
-    private static final String TAG = "GameScreenActivity";
 
     @BindView(R.id.cat1Title_textView)
     TextView cat1TitleTextView;
@@ -174,9 +171,14 @@ public class GameScreenActivity extends AppCompatActivity {
                 ArrayList<Categories> results = response.body();
                 for (int i = 0; i < 6; i++) {
                     int index = new Random().nextInt(100);
-                    categoryTitles.add(results.get(index).getTitle());
-                    categoryIDs.add(results.get(index).getId());
-                    categoryClues_count.add(results.get(index).getClues_count());
+                    if (results.get(index).getClues_count() >= 5) {
+
+                        categoryTitles.add(results.get(index).getTitle());
+                        categoryIDs.add(results.get(index).getId());
+                        categoryClues_count.add(results.get(index).getClues_count());
+                    } else {
+                        i--;
+                    }
                 }
                 initCardViews();
                 getCategory1Clues();
@@ -204,7 +206,7 @@ public class GameScreenActivity extends AppCompatActivity {
         urlList.add("/api/category?id=" + categoryIDs.get(5));
 
         CluesInterface cluesInterface = retrofit.create(CluesInterface.class);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             int index = i;
             Call<ClueResults> call = cluesInterface.getData(urlList.get(i));
 
@@ -217,32 +219,26 @@ public class GameScreenActivity extends AppCompatActivity {
                             case 0:
                                 cat1Questions.add(results.get(i).getQuestion());
                                 cat1Answers.add(results.get(i).getAnswer());
-                                cat1Values.add(results.get(i).getValue());
                                 break;
                             case 1:
                                 cat2Questions.add(results.get(i).getQuestion());
                                 cat2Answers.add(results.get(i).getAnswer());
-                                cat2Values.add(results.get(i).getValue());
                                 break;
                             case 2:
                                 cat3Questions.add(results.get(i).getQuestion());
                                 cat3Answers.add(results.get(i).getAnswer());
-                                cat3Values.add(results.get(i).getValue());
                                 break;
                             case 3:
                                 cat4Questions.add(results.get(i).getQuestion());
                                 cat4Answers.add(results.get(i).getAnswer());
-                                cat4Values.add(results.get(i).getValue());
                                 break;
                             case 4:
                                 cat5Questions.add(results.get(i).getQuestion());
                                 cat5Answers.add(results.get(i).getAnswer());
-                                cat5Values.add(results.get(i).getValue());
                                 break;
                             case 5:
                                 cat6Questions.add(results.get(i).getQuestion());
                                 cat6Answers.add(results.get(i).getAnswer());
-                                cat6Values.add(results.get(i).getValue());
                                 break;
                         }
                     }
@@ -320,27 +316,27 @@ public class GameScreenActivity extends AppCompatActivity {
                 break;
             case R.id.cat2Q1_textView:
                 builder.setMessage(cat2Questions.get(0));
-                rightAnswer = cat1Answers.get(0).toLowerCase();
+                rightAnswer = cat2Answers.get(0).toLowerCase();
                 qValue = 200;
                 break;
             case R.id.cat2Q2_textView:
                 builder.setMessage(cat2Questions.get(1));
-                rightAnswer = cat1Answers.get(1).toLowerCase();
+                rightAnswer = cat2Answers.get(1).toLowerCase();
                 qValue = 400;
                 break;
             case R.id.cat2Q3_textView:
                 builder.setMessage(cat2Questions.get(2));
-                rightAnswer = cat1Answers.get(2).toLowerCase();
+                rightAnswer = cat2Answers.get(2).toLowerCase();
                 qValue = 600;
                 break;
             case R.id.cat2Q4_textView:
                 builder.setMessage(cat2Questions.get(3));
-                rightAnswer = cat1Answers.get(3).toLowerCase();
+                rightAnswer = cat2Answers.get(3).toLowerCase();
                 qValue = 800;
                 break;
             case R.id.cat2Q5_textView:
                 builder.setMessage(cat2Questions.get(4));
-                rightAnswer = cat1Answers.get(4).toLowerCase();
+                rightAnswer = cat2Answers.get(4).toLowerCase();
                 qValue = 1000;
                 break;
             case R.id.cat3Q1_textView:
@@ -369,78 +365,78 @@ public class GameScreenActivity extends AppCompatActivity {
                 qValue = 1000;
                 break;
             case R.id.cat4Q1_textView:
-                builder.setMessage(cat3Questions.get(0));
-                rightAnswer = cat3Answers.get(0).toLowerCase();
+                builder.setMessage(cat4Questions.get(0));
+                rightAnswer = cat4Answers.get(0).toLowerCase();
                 qValue = 200;
                 break;
             case R.id.cat4Q2_textView:
-                builder.setMessage(cat3Questions.get(1));
-                rightAnswer = cat3Answers.get(1).toLowerCase();
+                builder.setMessage(cat4Questions.get(1));
+                rightAnswer = cat4Answers.get(1).toLowerCase();
                 qValue = 400;
                 break;
             case R.id.cat4Q3_textView:
-                builder.setMessage(cat3Questions.get(2));
-                rightAnswer = cat3Answers.get(2).toLowerCase();
+                builder.setMessage(cat4Questions.get(2));
+                rightAnswer = cat4Answers.get(2).toLowerCase();
                 qValue = 600;
                 break;
             case R.id.cat4Q4_textView:
-                builder.setMessage(cat3Questions.get(3));
-                rightAnswer = cat3Answers.get(3).toLowerCase();
+                builder.setMessage(cat4Questions.get(3));
+                rightAnswer = cat4Answers.get(3).toLowerCase();
                 qValue = 800;
                 break;
             case R.id.cat4Q5_textView:
-                builder.setMessage(cat3Questions.get(4));
-                rightAnswer = cat3Answers.get(4).toLowerCase();
+                builder.setMessage(cat4Questions.get(4));
+                rightAnswer = cat4Answers.get(4).toLowerCase();
                 qValue = 1000;
                 break;
             case R.id.cat5Q1_textView:
-                builder.setMessage(cat3Questions.get(0));
-                rightAnswer = cat3Answers.get(0).toLowerCase();
+                builder.setMessage(cat5Questions.get(0));
+                rightAnswer = cat5Answers.get(0).toLowerCase();
                 qValue = 200;
                 break;
             case R.id.cat5Q2_textView:
-                builder.setMessage(cat3Questions.get(1));
-                rightAnswer = cat3Answers.get(1).toLowerCase();
+                builder.setMessage(cat5Questions.get(1));
+                rightAnswer = cat5Answers.get(1).toLowerCase();
                 qValue = 400;
                 break;
             case R.id.cat5Q3_textView:
-                builder.setMessage(cat3Questions.get(2));
-                rightAnswer = cat3Answers.get(2).toLowerCase();
+                builder.setMessage(cat5Questions.get(2));
+                rightAnswer = cat5Answers.get(2).toLowerCase();
                 qValue = 600;
                 break;
             case R.id.cat5Q4_textView:
-                builder.setMessage(cat3Questions.get(3));
-                rightAnswer = cat3Answers.get(3).toLowerCase();
+                builder.setMessage(cat5Questions.get(3));
+                rightAnswer = cat5Answers.get(3).toLowerCase();
                 qValue = 800;
                 break;
             case R.id.cat5Q5_textView:
-                builder.setMessage(cat3Questions.get(4));
-                rightAnswer = cat3Answers.get(4).toLowerCase();
+                builder.setMessage(cat5Questions.get(4));
+                rightAnswer = cat5Answers.get(4).toLowerCase();
                 qValue = 1000;
                 break;
             case R.id.cat6Q1_textView:
-                builder.setMessage(cat3Questions.get(0));
-                rightAnswer = cat3Answers.get(0).toLowerCase();
+                builder.setMessage(cat6Questions.get(0));
+                rightAnswer = cat6Answers.get(0).toLowerCase();
                 qValue = 200;
                 break;
             case R.id.cat6Q2_textView:
-                builder.setMessage(cat3Questions.get(1));
-                rightAnswer = cat3Answers.get(1).toLowerCase();
+                builder.setMessage(cat6Questions.get(1));
+                rightAnswer = cat6Answers.get(1).toLowerCase();
                 qValue = 400;
                 break;
             case R.id.cat6Q3_textView:
-                builder.setMessage(cat3Questions.get(2));
-                rightAnswer = cat3Answers.get(2).toLowerCase();
+                builder.setMessage(cat6Questions.get(2));
+                rightAnswer = cat6Answers.get(2).toLowerCase();
                 qValue = 600;
                 break;
             case R.id.cat6Q4_textView:
-                builder.setMessage(cat3Questions.get(3));
-                rightAnswer = cat3Answers.get(3).toLowerCase();
+                builder.setMessage(cat6Questions.get(3));
+                rightAnswer = cat6Answers.get(3).toLowerCase();
                 qValue = 800;
                 break;
             case R.id.cat6Q5_textView:
-                builder.setMessage(cat3Questions.get(4));
-                rightAnswer = cat3Answers.get(4).toLowerCase();
+                builder.setMessage(cat6Questions.get(4));
+                rightAnswer = cat6Answers.get(4).toLowerCase();
                 qValue = 1000;
                 break;
         }
@@ -455,7 +451,7 @@ public class GameScreenActivity extends AppCompatActivity {
                 TOTAL_SCORE += val;
                 totalScoreValueTextView.setText("" + TOTAL_SCORE);
                 builder2.setTitle("Correct!");
-                builder2.setMessage("Points added: " + val);
+                builder2.setMessage(val + " points added");
             } else {
                 TOTAL_SCORE -= val;
                 totalScoreValueTextView.setText("" + TOTAL_SCORE);

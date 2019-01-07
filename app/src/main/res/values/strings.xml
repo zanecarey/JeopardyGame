@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">JeopardyGame</string>
     <string name="score"><u>Score:</u></string>
+    <string name="_200">$200</string>
+    <string name="_400">$400</string>
+    <string name="_600">$600</string>
+    <string name="_800">$800</string>
+    <string name="_1000">$1000</string>
 </resources>

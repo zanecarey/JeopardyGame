@@ -35,9 +35,9 @@ public class GameScreenActivity extends AppCompatActivity {
     TextView cat2TitleTextView;
     @BindView(R.id.cat3Title_textView)
     TextView cat3TitleTextView;
-    @BindView(R.id.totalScore_textView)
+    @BindView(R.id.player1Score_textView)
     TextView totalScoreTextView;
-    @BindView(R.id.totalScoreValue_textView)
+    @BindView(R.id.player1ScoreValue_textView)
     TextView totalScoreValueTextView;
     @BindView(R.id.cat1Q1_textView)
     TextView cat1Q1textView;
@@ -114,27 +114,26 @@ public class GameScreenActivity extends AppCompatActivity {
     //Category 1 stuff
     private ArrayList<String> cat1Questions = new ArrayList<>();
     private ArrayList<String> cat1Answers = new ArrayList<>();
-    private ArrayList<Integer> cat1Values = new ArrayList<>();
+
     //Category 2 stuff
     private ArrayList<String> cat2Questions = new ArrayList<>();
     private ArrayList<String> cat2Answers = new ArrayList<>();
-    private ArrayList<Integer> cat2Values = new ArrayList<>();
+
     //Category 3 stuff
     private ArrayList<String> cat3Questions = new ArrayList<>();
     private ArrayList<String> cat3Answers = new ArrayList<>();
-    private ArrayList<Integer> cat3Values = new ArrayList<>();
+
     //Category 4 stuff
     private ArrayList<String> cat4Questions = new ArrayList<>();
     private ArrayList<String> cat4Answers = new ArrayList<>();
-    private ArrayList<Integer> cat4Values = new ArrayList<>();
+
     //Category 5 stuff
     private ArrayList<String> cat5Questions = new ArrayList<>();
     private ArrayList<String> cat5Answers = new ArrayList<>();
-    private ArrayList<Integer> cat5Values = new ArrayList<>();
+
     //Category 6 stuff
     private ArrayList<String> cat6Questions = new ArrayList<>();
     private ArrayList<String> cat6Answers = new ArrayList<>();
-    private ArrayList<Integer> cat6Values = new ArrayList<>();
 
     //running total score of game
     public static int TOTAL_SCORE = 0;
@@ -171,7 +170,7 @@ public class GameScreenActivity extends AppCompatActivity {
                 ArrayList<Categories> results = response.body();
                 for (int i = 0; i < 6; i++) {
                     int index = new Random().nextInt(100);
-                    if (results.get(index).getClues_count() >= 5) {
+                    if (results.get(index).getClues_count() >= 5 && !categoryIDs.contains(results.get(index).getId())) {
 
                         categoryTitles.add(results.get(index).getTitle());
                         categoryIDs.add(results.get(index).getId());
@@ -242,7 +241,6 @@ public class GameScreenActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-                    //initClues(index);
                 }
 
                 @Override

@@ -2,18 +2,18 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/prepareGame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PrepareGameActivity"
-    tools:layout_editor_absoluteY="81dp"
-    android:id="@+id/prepareGame_layout">
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/player1_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Player 1"
+        android:text="Player 1:"
         app:layout_constraintBaseline_toBaselineOf="@+id/playerName1_textView"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Player 2"
+        android:text="Player 2:"
         app:layout_constraintBaseline_toBaselineOf="@+id/playerName2_textView"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Player 3"
+        android:text="Player 3:"
         app:layout_constraintBaseline_toBaselineOf="@+id/playerName3_textView"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -40,7 +40,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="name"
         app:layout_constraintStart_toEndOf="@+id/player1_textView"
         app:layout_constraintTop_toBottomOf="@+id/lobby_textView" />
 
@@ -49,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="name"
         app:layout_constraintStart_toEndOf="@+id/player2_textView"
         app:layout_constraintTop_toBottomOf="@+id/player1_textView" />
 
@@ -57,41 +55,19 @@
         android:id="@+id/playerName3_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:text="name"
-        app:layout_constraintBottom_toTopOf="@+id/addPlayer_btn"
-        app:layout_constraintStart_toEndOf="@+id/player3_textView" />
-
-    <Button
-        android:id="@+id/addPlayer_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Add player"
-        app:layout_constraintBaseline_toBaselineOf="@+id/email_editText"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/player3_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
 
     <Button
         android:id="@+id/start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="10dp"
         android:text="Start Game"
-        app:layout_constraintStart_toStartOf="@+id/email_editText"
-        app:layout_constraintTop_toBottomOf="@+id/email_editText" />
-
-    <EditText
-        android:id="@+id/email_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="49dp"
-        android:ems="10"
-        android:hint="Enter email"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/addPlayer_btn"
-        app:layout_constraintTop_toBottomOf="@+id/playerName2_textView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerName3_textView" />
 
     <TextView
         android:id="@+id/lobby_textView"

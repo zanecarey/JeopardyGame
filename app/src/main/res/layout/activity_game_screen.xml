@@ -22,17 +22,32 @@
             android:layout_gravity="left">
 
             <TextView
+                android:id="@+id/currentTurn_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current turn: "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/currentTurnName_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/player1Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="30sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/player1ScoreValue_textView"
                 android:text="$"
                 android:textStyle="bold"
-                android:textSize="30sp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -42,13 +57,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="30sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/player2ScoreValue_textView"
                 android:text="$"
                 android:textStyle="bold"
-                android:textSize="30sp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -58,13 +73,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="30sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/player3ScoreValue_textView"
                 android:text="$"
                 android:textStyle="bold"
-                android:textSize="30sp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />

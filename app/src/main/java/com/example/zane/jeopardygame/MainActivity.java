@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, GameScreenActivity.class);
             startActivity(intent);
         } else {
+            //check if lobby full before launching?
             Intent intent = new Intent(MainActivity.this, PrepareGameActivity.class);
             startActivity(intent);
         }

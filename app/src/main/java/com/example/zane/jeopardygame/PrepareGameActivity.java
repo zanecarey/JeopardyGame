@@ -2,6 +2,7 @@ package com.example.zane.jeopardygame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +15,11 @@ import com.example.zane.jeopardygame.model.Categories;
 import com.example.zane.jeopardygame.model.ClueResults;
 import com.example.zane.jeopardygame.model.Clues;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -40,12 +44,8 @@ public class PrepareGameActivity extends AppCompatActivity {
     TextView playerName2TextView;
     @BindView(R.id.playerName3_textView)
     TextView playerName3TextView;
-    @BindView(R.id.addPlayer_btn)
-    Button addPlayerBtn;
     @BindView(R.id.start_btn)
     Button startBtn;
-    @BindView(R.id.email_editText)
-    EditText emailEditText;
     @BindView(R.id.prepareGame_layout)
     ConstraintLayout prepareGameLayout;
 
@@ -78,6 +78,7 @@ public class PrepareGameActivity extends AppCompatActivity {
     private ArrayList<String> cat6Answers = new ArrayList<>();
 
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference gameStartedRef = rootRef.child("gameStarted");
 
     private int playerSlot;
 
@@ -88,17 +89,35 @@ public class PrepareGameActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setPlayerSlot();
+        gameStartedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Intent intent = new Intent(PrepareGameActivity.this, MultiplayerGameScreenActivity.class);
+                intent.putExtra("playerSlot", playerSlot);
+                startActivity(intent);
+            }
 
-        getCategories();
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void setPlayerSlot() {
-        if (rootRef.child("player1Email").equals("")) {
-            rootRef.child("player1Email").setValue(FirebaseAuth.getInstance().getCurrentUser());
-        } else if (rootRef.child("player2Email").equals("")) {
-            rootRef.child("player2Email").setValue(FirebaseAuth.getInstance().getCurrentUser());
-        } else if (rootRef.child("player3Email").equals("")) {
-            rootRef.child("player3Email").setValue(FirebaseAuth.getInstance().getCurrentUser());
+        if (playerName1TextView.getText().toString().equals("")) {
+            getCategories();
+            rootRef.child("player1Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            playerSlot = 1;
+            playerName1TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        } else if (playerName2TextView.getText().toString().equals("")) {
+            rootRef.child("player2Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            playerSlot = 2;
+            playerName2TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        } else if (playerName3TextView.getText().toString().equals("")) {
+            rootRef.child("player3Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            playerSlot = 3;
+            playerName3TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         } else {
             Snackbar.make(prepareGameLayout, "Lobby Full", Snackbar.LENGTH_SHORT).show();
         }
@@ -323,29 +342,32 @@ public class PrepareGameActivity extends AppCompatActivity {
         rootRef.child("clues").child("cat6").child("cat6A5").setValue(cat6Answers.get(4));
     }
 
-    @OnClick({R.id.addPlayer_btn, R.id.start_btn})
+    @OnClick(R.id.start_btn)
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.addPlayer_btn:
-                //get player from firebase, add to player 2, then 3
-                String playerName = emailEditText.getText().toString();
-                if (playerName2TextView.getText().toString().equals("")) {
-                    playerName2TextView.setText(playerName);
-                    FirebaseDatabase.getInstance().getReference().child("player2Email").setValue(playerName);
-                    //FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                } else {
-                    playerName2TextView.setText(playerName);
-                    FirebaseDatabase.getInstance().getReference().child("player3Email").setValue(playerName);
-                }
 
-                break;
             case R.id.start_btn:
                 //get game data?
+                rootRef.child("playerTurn").setValue(1);
+                rootRef.child("questionTotal").setValue(0);
                 uploadClues();
                 uploadAnswers();
-                Intent intent = new Intent(PrepareGameActivity.this, MultiplayerGameScreenActivity.class);
-                startActivity(intent);
+                rootRef.child("gameStarted").setValue("true");
+
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        rootRef.child("currentQ").setValue("");
+        rootRef.child("player1Email").setValue("");
+        rootRef.child("player2Email").setValue("");
+        rootRef.child("player3Email").setValue("");
+        rootRef.child("player1Score").setValue("");
+        rootRef.child("player2Score").setValue("");
+        rootRef.child("player3Score").setValue("");
+        rootRef.child("playerTurn").setValue(1);
+        super.onDestroy();
     }
 }

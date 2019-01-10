@@ -10,10 +10,16 @@
         <item name="android:textColor">#fff200</item>
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textViewStyle">@style/textViewStyle</item>
+        <item name="android:buttonStyle">@style/buttonStyle</item>
     </style>
 
     <style name="textViewStyle" parent="android:Widget.TextView">
         <item name="android:background">@color/jeopardyBlue</item>
+    </style>
+
+    <style name="buttonStyle" parent="android:Widget.Button">
+        <item name="android:background">@color/jeopardyBlue</item>
+        <item name="android:textColor">@color/jeopardyYellow</item>
     </style>
 
     <style name="AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">

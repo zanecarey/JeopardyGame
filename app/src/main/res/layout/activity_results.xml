@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".ResultsActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <TextView
+        android:id="@+id/results_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="16dp"
+        android:text="Results"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/player1_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/results_textView"
+        app:layout_constraintTop_toBottomOf="@+id/results_textView" />
+
+    <TextView
+        android:id="@+id/player2_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/player1Score_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player1Score_textView" />
+
+    <TextView
+        android:id="@+id/player3_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/player2Score_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player2Score_textView" />
+
+    <TextView
+        android:id="@+id/player1Score_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/player1_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player1_textView" />
+
+    <TextView
+        android:id="@+id/player2Score_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/player2_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
+
+    <TextView
+        android:id="@+id/player3Score_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/player3_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player3_textView" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="31dp"
+        android:padding="2dp"
+        android:text="Done"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/player3Score_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player3Score_textView" />
+</android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.zane.jeopardygame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,11 @@ import android.widget.Button;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.startMultiplayerGame_btn)
     Button startMultiplayerGameBtn;
 
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference player3Ref = rootRef.child("player3Email");
+    String player3 = "";
+    @BindView(R.id.reset_btn)
+    Button resetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +50,49 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Snackbar.make(mainActivityLayout, "Welcome " + FirebaseAuth.getInstance().getCurrentUser().getEmail(), Snackbar.LENGTH_SHORT).show();
         }
+
+        player3Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                player3 = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn})
+    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn, R.id.reset_btn})
     public void onViewClicked(View view) {
-        if(view.getId() == R.id.startGame_btn){
-
-            Intent intent = new Intent(MainActivity.this, GameScreenActivity.class);
-            startActivity(intent);
-        } else {
-            //check if lobby full before launching?
-            Intent intent = new Intent(MainActivity.this, PrepareGameActivity.class);
-            startActivity(intent);
+        Intent intent;
+        switch (view.getId()) {
+            case R.id.startGame_btn:
+                intent = new Intent(MainActivity.this, GameScreenActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.startMultiplayerGame_btn:
+                if(player3.equals("")){
+                    intent = new Intent(MainActivity.this, PrepareGameActivity.class);
+                    startActivity(intent);
+                } else {
+                    Snackbar.make(mainActivityLayout, "Lobby full!", Snackbar.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.reset_btn:
+                rootRef.child("currentQ").setValue(0);
+                rootRef.child("player1Email").setValue("");
+                rootRef.child("player2Email").setValue("");
+                rootRef.child("player3Email").setValue("");
+                rootRef.child("player1Score").setValue(0);
+                rootRef.child("player2Score").setValue(0);
+                rootRef.child("player3Score").setValue(0);
+                rootRef.child("playerTurn").setValue(1);
+                rootRef.child("questionTotal").setValue(0);
+                rootRef.child("gameStarted").setValue("");
+                break;
         }
     }
 }
+

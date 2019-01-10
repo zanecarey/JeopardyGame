@@ -1,10 +1,12 @@
 package com.example.zane.jeopardygame;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -92,9 +94,12 @@ public class PrepareGameActivity extends AppCompatActivity {
         gameStartedRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Intent intent = new Intent(PrepareGameActivity.this, MultiplayerGameScreenActivity.class);
-                intent.putExtra("playerSlot", playerSlot);
-                startActivity(intent);
+                if(dataSnapshot.getValue(String.class).equals("true")){
+
+                    Intent intent = new Intent(PrepareGameActivity.this, MultiplayerGameScreenActivity.class);
+                    intent.putExtra("playerSlot", playerSlot);
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -107,6 +112,7 @@ public class PrepareGameActivity extends AppCompatActivity {
     private void setPlayerSlot() {
         if (playerName1TextView.getText().toString().equals("")) {
             getCategories();
+            resetValues();
             rootRef.child("player1Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             playerSlot = 1;
             playerName1TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -118,8 +124,6 @@ public class PrepareGameActivity extends AppCompatActivity {
             rootRef.child("player3Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             playerSlot = 3;
             playerName3TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        } else {
-            Snackbar.make(prepareGameLayout, "Lobby Full", Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -227,6 +231,19 @@ public class PrepareGameActivity extends AppCompatActivity {
         }
     }
 
+    private void resetValues(){
+        rootRef.child("currentQ").setValue(0);
+        rootRef.child("player1Email").setValue("");
+        rootRef.child("player2Email").setValue("");
+        rootRef.child("player3Email").setValue("");
+        rootRef.child("player1Score").setValue(0);
+        rootRef.child("player2Score").setValue(0);
+        rootRef.child("player3Score").setValue(0);
+        rootRef.child("playerTurn").setValue(1);
+        rootRef.child("questionTotal").setValue(0);
+        rootRef.child("gameStarted").setValue("");
+        rootRef.child("gameEnded").setValue(false);
+    }
 
     //upload categorie titles and ids to firebase db
     private void uploadCategories() {
@@ -347,27 +364,40 @@ public class PrepareGameActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.start_btn:
-                //get game data?
-                rootRef.child("playerTurn").setValue(1);
-                rootRef.child("questionTotal").setValue(0);
                 uploadClues();
                 uploadAnswers();
                 rootRef.child("gameStarted").setValue("true");
-
                 break;
         }
     }
 
+    //dialog if back pressed
     @Override
-    protected void onDestroy() {
-        rootRef.child("currentQ").setValue("");
-        rootRef.child("player1Email").setValue("");
-        rootRef.child("player2Email").setValue("");
-        rootRef.child("player3Email").setValue("");
-        rootRef.child("player1Score").setValue("");
-        rootRef.child("player2Score").setValue("");
-        rootRef.child("player3Score").setValue("");
-        rootRef.child("playerTurn").setValue(1);
-        super.onDestroy();
+    public void onBackPressed() {
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this, R.style.AlertDialog);
+        builder.setTitle("Leave Lobby?");
+        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+            //remove player from lobby list
+            if(playerSlot==1){
+                playerName1TextView.setText("");
+                rootRef.child("player1Email").setValue("");
+            } else if(playerSlot == 2){
+                playerName2TextView.setText("");
+                rootRef.child("player2Email").setValue("");
+            } else {
+                playerName3TextView.setText("");
+                rootRef.child("player3Email").setValue("");
+            }
+
+            Intent intent = new Intent(PrepareGameActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+        builder.setNegativeButton("No", (dialogInterface, i) -> {
+
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 }

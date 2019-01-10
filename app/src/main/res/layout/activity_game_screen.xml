@@ -25,6 +25,9 @@
                 android:id="@+id/currentTurn_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="Current turn: "
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -36,11 +39,18 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/player1Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:text="Player 1:"
+                android:layout_marginStart="8dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
@@ -56,7 +66,8 @@
                 android:id="@+id/player2Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_marginStart="8dp"
+                android:text="Player 2:"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
@@ -72,7 +83,8 @@
                 android:id="@+id/player3Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:text="Player 3:"
+                android:layout_marginStart="8dp"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
@@ -94,9 +106,10 @@
                 android:id="@+id/cat1Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="42dp" />
 
@@ -105,9 +118,10 @@
                 android:id="@+id/cat2Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="104dp"
                 tools:layout_editor_absoluteY="42dp" />
 
@@ -116,6 +130,7 @@
                 android:id="@+id/cat3Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_margin="2dp"
@@ -126,6 +141,7 @@
                 android:id="@+id/cat4Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_margin="2dp"
@@ -136,6 +152,7 @@
                 android:id="@+id/cat5Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_margin="2dp"
@@ -146,6 +163,7 @@
                 android:id="@+id/cat6Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:gravity="center"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_margin="2dp"
@@ -298,12 +316,12 @@
                 android:id="@+id/cat5Q2_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_400"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 

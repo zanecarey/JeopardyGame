@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference player3Ref = rootRef.child("player3Email");
     String player3 = "";
-    @BindView(R.id.reset_btn)
-    Button resetBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Snackbar.make(mainActivityLayout, "Lobby full!", Snackbar.LENGTH_SHORT).show();
                 }
-                break;
-            case R.id.reset_btn:
-                rootRef.child("currentQ").setValue(0);
-                rootRef.child("player1Email").setValue("");
-                rootRef.child("player2Email").setValue("");
-                rootRef.child("player3Email").setValue("");
-                rootRef.child("player1Score").setValue(0);
-                rootRef.child("player2Score").setValue(0);
-                rootRef.child("player3Score").setValue(0);
-                rootRef.child("playerTurn").setValue(1);
-                rootRef.child("questionTotal").setValue(0);
-                rootRef.child("gameStarted").setValue("");
                 break;
         }
     }

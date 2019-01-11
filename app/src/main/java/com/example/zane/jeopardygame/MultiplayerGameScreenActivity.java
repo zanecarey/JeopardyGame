@@ -576,13 +576,13 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 //update chosen q
                 rootRef.child("currentQ").setValue(viewID);
                 //update playerTurn
-//                if (playerSlot == 1) {
-//                    rootRef.child("playerTurn").setValue(2);
-//                } else if (playerSlot == 2) {
-//                    rootRef.child("playerTurn").setValue(3);
-//                } else {
-//                    rootRef.child("playerTurn").setValue(1);
-//                }
+                if (playerSlot == 1) {
+                    rootRef.child("playerTurn").setValue(2);
+                } else if (playerSlot == 2) {
+                    rootRef.child("playerTurn").setValue(3);
+                } else {
+                    rootRef.child("playerTurn").setValue(1);
+                }
                 //increment game q counter
                 qCount++;
                 rootRef.child("questionTotal").setValue(qCount);
@@ -611,18 +611,14 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(this, R.style.AlertDialog);
         builder.setTitle("Leave Game?");
         builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-
             //flag for game being cancelled
             rootRef.child("gameEnded").setValue(true);
-
-
         });
         builder.setNegativeButton("No", (dialogInterface, i) -> {
 
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 }
 

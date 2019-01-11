@@ -18,7 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameScreenActivity" />
+        <activity
+            android:name=".GameScreenActivity"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".QuestionDisplayActivity" />
         <activity android:name=".PrepareGameActivity" />
         <activity android:name=".MultiplayerGameScreenActivity" />

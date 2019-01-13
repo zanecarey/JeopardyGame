@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <HorizontalScrollView
     android:id="@+id/game_scrollView"
     android:layout_width="match_parent"
@@ -10,7 +8,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="#000"
         tools:context=".GameScreenActivity"
@@ -20,7 +18,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left">
+            android:layout_gravity="start">
 
             <TextView
                 android:id="@+id/currentTurn_textView"
@@ -29,9 +27,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Current turn: "
+                android:background="@drawable/border"
+                android:text="@string/current_turn"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="normal|bold" />
 
             <TextView
                 android:id="@+id/currentTurnName_textView"
@@ -50,13 +49,15 @@
                 android:id="@+id/player1Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player 1:"
                 android:layout_marginStart="8dp"
+                android:background="@drawable/border"
+                android:padding="2dp"
+                android:text="@string/player_1"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/player1ScoreValue_textView"
-                android:text="$"
+                android:text="@string/$"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -68,12 +69,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Player 2:"
+                android:background="@drawable/border"
+                android:text="@string/player_2"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/player2ScoreValue_textView"
-                android:text="$"
+                android:text="@string/$"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -84,13 +86,14 @@
                 android:id="@+id/player3Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player 3:"
                 android:layout_marginStart="8dp"
+                android:background="@drawable/border"
+                android:text="@string/player_3"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/player3ScoreValue_textView"
-                android:text="$"
+                android:text="@string/$"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
@@ -101,6 +104,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:orientation="horizontal">
 
             <TextView
@@ -109,6 +114,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="2dp"
                 android:gravity="center"
+                android:textColor="@color/jeopardyWhite"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="6dp"
@@ -121,6 +127,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="2dp"
                 android:gravity="center"
+                android:textColor="@color/jeopardyWhite"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="104dp"
@@ -131,10 +138,11 @@
                 android:id="@+id/cat3Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
+                android:textColor="@color/jeopardyWhite"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="42dp" />
 
@@ -142,10 +150,11 @@
                 android:id="@+id/cat4Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
+                android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="42dp" />
 
@@ -153,10 +162,11 @@
                 android:id="@+id/cat5Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
+                android:textColor="@color/jeopardyWhite"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="42dp" />
 
@@ -164,10 +174,11 @@
                 android:id="@+id/cat6Title_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
+                android:textColor="@color/jeopardyWhite"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="42dp" />
         </LinearLayout>
@@ -175,18 +186,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cat1Q1_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_200"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -194,12 +207,12 @@
                 android:id="@+id/cat2Q1_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_200"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="104dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -207,12 +220,12 @@
                 android:id="@+id/cat3Q1_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_200"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -220,12 +233,12 @@
                 android:id="@+id/cat4Q1_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_200"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -233,12 +246,12 @@
                 android:id="@+id/cat5Q1_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_200"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -246,12 +259,12 @@
                 android:id="@+id/cat6Q1_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_200"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
         </LinearLayout>
@@ -259,18 +272,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cat1Q2_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_400"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -278,12 +293,12 @@
                 android:id="@+id/cat2Q2_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_400"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="104dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -291,12 +306,12 @@
                 android:id="@+id/cat3Q2_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_400"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -304,12 +319,12 @@
                 android:id="@+id/cat4Q2_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_400"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -330,12 +345,12 @@
                 android:id="@+id/cat6Q2_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_400"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
         </LinearLayout>
@@ -343,18 +358,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cat1Q3_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_600"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -362,12 +379,12 @@
                 android:id="@+id/cat2Q3_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_600"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="104dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -375,12 +392,12 @@
                 android:id="@+id/cat3Q3_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_600"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -388,12 +405,12 @@
                 android:id="@+id/cat4Q3_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_600"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -401,12 +418,12 @@
                 android:id="@+id/cat5Q3_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_600"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -414,12 +431,12 @@
                 android:id="@+id/cat6Q3_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_600"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
         </LinearLayout>
@@ -427,18 +444,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cat1Q4_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_800"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -446,12 +465,12 @@
                 android:id="@+id/cat2Q4_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_800"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="104dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -459,12 +478,12 @@
                 android:id="@+id/cat3Q4_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_800"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -472,12 +491,12 @@
                 android:id="@+id/cat4Q4_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_800"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -485,12 +504,12 @@
                 android:id="@+id/cat5Q4_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_800"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -498,12 +517,12 @@
                 android:id="@+id/cat6Q4_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_800"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -512,18 +531,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cat1Q5_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_1000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="6dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -531,12 +552,12 @@
                 android:id="@+id/cat2Q5_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_1000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="104dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -544,12 +565,12 @@
                 android:id="@+id/cat3Q5_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_1000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -557,12 +578,12 @@
                 android:id="@+id/cat4Q5_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_1000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -570,12 +591,12 @@
                 android:id="@+id/cat5Q5_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_1000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
 
@@ -583,17 +604,15 @@
                 android:id="@+id/cat6Q5_textView"
                 android:layout_width="90dp"
                 android:layout_height="70dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="@string/_1000"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:layout_margin="2dp"
                 tools:layout_editor_absoluteX="199dp"
                 tools:layout_editor_absoluteY="121dp" />
         </LinearLayout>
-
-
 
     </LinearLayout>
 </HorizontalScrollView>

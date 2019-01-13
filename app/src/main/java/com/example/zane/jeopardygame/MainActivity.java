@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn, R.id.reset_btn})
+    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {

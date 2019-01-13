@@ -1,16 +1,13 @@
 package com.example.zane.jeopardygame;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.zane.jeopardygame.model.Categories;
@@ -50,6 +47,18 @@ public class PrepareGameActivity extends AppCompatActivity {
     Button startBtn;
     @BindView(R.id.prepareGame_layout)
     ConstraintLayout prepareGameLayout;
+    @BindView(R.id.cat1Title_textView)
+    TextView cat1TitleTextView;
+    @BindView(R.id.cat2Title_textView)
+    TextView cat2TitleTextView;
+    @BindView(R.id.cat3Title_textView)
+    TextView cat3TitleTextView;
+    @BindView(R.id.cat4Title_textView)
+    TextView cat4TitleTextView;
+    @BindView(R.id.cat5Title_textView)
+    TextView cat5TitleTextView;
+    @BindView(R.id.cat6Title_textView)
+    TextView cat6TitleTextView;
 
 
     private ArrayList<String> categoryTitles = new ArrayList<>();
@@ -90,11 +99,24 @@ public class PrepareGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_prepare_game);
         ButterKnife.bind(this);
 
+        rootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                playerName1TextView.setText(dataSnapshot.child("player1Email").getValue(String.class));
+                playerName2TextView.setText(dataSnapshot.child("player2Email").getValue(String.class));
+                playerName3TextView.setText(dataSnapshot.child("player3Email").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         setPlayerSlot();
         gameStartedRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue(String.class).equals("true")){
+                if (dataSnapshot.getValue(String.class).equals("true")) {
 
                     Intent intent = new Intent(PrepareGameActivity.this, MultiplayerGameScreenActivity.class);
                     intent.putExtra("playerSlot", playerSlot);
@@ -160,6 +182,7 @@ public class PrepareGameActivity extends AppCompatActivity {
                     }
                 }
                 uploadCategories();
+                displayCategories();
                 getCategory1Clues();
             }
 
@@ -231,7 +254,7 @@ public class PrepareGameActivity extends AppCompatActivity {
         }
     }
 
-    private void resetValues(){
+    private void resetValues() {
         rootRef.child("currentQ").setValue(0);
         rootRef.child("player1Email").setValue("");
         rootRef.child("player2Email").setValue("");
@@ -266,6 +289,15 @@ public class PrepareGameActivity extends AppCompatActivity {
         rootRef.child("cat6").setValue(categoryTitles.get(5));
         rootRef.child("cat6ID").setValue(categoryIDs.get(5));
 
+    }
+
+    private void displayCategories() {
+        cat1TitleTextView.setText(categoryTitles.get(0));
+        cat2TitleTextView.setText(categoryTitles.get(1));
+        cat3TitleTextView.setText(categoryTitles.get(2));
+        cat4TitleTextView.setText(categoryTitles.get(3));
+        cat5TitleTextView.setText(categoryTitles.get(4));
+        cat6TitleTextView.setText(categoryTitles.get(5));
     }
 
     private void uploadClues() {
@@ -379,10 +411,10 @@ public class PrepareGameActivity extends AppCompatActivity {
         builder.setTitle("Leave Lobby?");
         builder.setPositiveButton("Yes", (dialogInterface, i) -> {
             //remove player from lobby list
-            if(playerSlot==1){
+            if (playerSlot == 1) {
                 playerName1TextView.setText("");
                 rootRef.child("player1Email").setValue("");
-            } else if(playerSlot == 2){
+            } else if (playerSlot == 2) {
                 playerName2TextView.setText("");
                 rootRef.child("player2Email").setValue("");
             } else {

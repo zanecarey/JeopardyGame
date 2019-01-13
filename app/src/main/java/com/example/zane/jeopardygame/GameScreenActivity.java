@@ -105,6 +105,18 @@ public class GameScreenActivity extends AppCompatActivity {
     TextView cat5Q5TextView;
     @BindView(R.id.cat6Q5_textView)
     TextView cat6Q5TextView;
+    @BindView(R.id.currentTurn_textView)
+    TextView currentTurnTextView;
+    @BindView(R.id.currentTurnName_textView)
+    TextView currentTurnNameTextView;
+    @BindView(R.id.player2Score_textView)
+    TextView player2ScoreTextView;
+    @BindView(R.id.player2ScoreValue_textView)
+    TextView player2ScoreValueTextView;
+    @BindView(R.id.player3Score_textView)
+    TextView player3ScoreTextView;
+    @BindView(R.id.player3ScoreValue_textView)
+    TextView player3ScoreValueTextView;
 
 
     private ArrayList<String> categoryTitles = new ArrayList<>();
@@ -143,6 +155,13 @@ public class GameScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
         ButterKnife.bind(this);
+
+        //deactivate multiplayer views
+        currentTurnTextView.setVisibility(View.INVISIBLE);
+        player2ScoreTextView.setVisibility(View.INVISIBLE);
+        player3ScoreTextView.setVisibility(View.INVISIBLE);
+        player2ScoreValueTextView.setVisibility(View.INVISIBLE);
+        player3ScoreValueTextView.setVisibility(View.INVISIBLE);
 
         getCategories();
     }

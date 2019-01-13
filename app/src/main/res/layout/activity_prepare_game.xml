@@ -14,79 +14,219 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Player 1:"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/border"
+        android:padding="6dp"
+        android:text="@string/pl_1"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/playerName1_textView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lobby_textView" />
 
     <TextView
         android:id="@+id/player2_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Player 2:"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:padding="6dp"
+        android:text="@string/pl_2"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/playerName2_textView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1_textView" />
 
     <TextView
         android:id="@+id/player3_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Player 3:"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:padding="6dp"
+        android:text="@string/pl_3"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/playerName3_textView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
 
     <TextView
         android:id="@+id/playerName1_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/player1_textView"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/border"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/playerName2_textView"
+        app:layout_constraintStart_toStartOf="@+id/playerName2_textView"
         app:layout_constraintTop_toBottomOf="@+id/lobby_textView" />
 
     <TextView
         android:id="@+id/playerName2_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/player2_textView"
-        app:layout_constraintTop_toBottomOf="@+id/player1_textView" />
+        android:layout_marginTop="22dp"
+        android:background="@drawable/border"
+        android:gravity="start"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/playerName3_textView"
+        app:layout_constraintStart_toStartOf="@+id/playerName3_textView"
+        app:layout_constraintTop_toBottomOf="@+id/playerName1_textView" />
 
     <TextView
         android:id="@+id/playerName3_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/player3_textView"
-        app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
+        android:layout_marginTop="22dp"
+        android:background="@drawable/border"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerName2_textView" />
+
 
     <Button
         android:id="@+id/start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Start Game"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/border"
+        android:padding="4dp"
+        android:text="@string/start_game"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerName3_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
 
     <TextView
         android:id="@+id/lobby_textView"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="@string/lobby"
+        android:textColor="@color/jeopardyWhite"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/playerName1_textView"
+        app:layout_constraintStart_toStartOf="@+id/playerName1_textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/categories_textView"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:text="@string/categories"
+        android:textColor="@color/jeopardyWhite"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/playerName3_textView"
+        app:layout_constraintStart_toStartOf="@+id/playerName3_textView"
+        app:layout_constraintTop_toBottomOf="@+id/player3_textView" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="Lobby"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/categories_textView">
+
+        <TextView
+            android:id="@+id/cat1Title_textView"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:textColor="@color/jeopardyWhite"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="6dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+
+        <TextView
+            android:id="@+id/cat2Title_textView"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:textColor="@color/jeopardyWhite"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="104dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+
+        <TextView
+            android:id="@+id/cat3Title_textView"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:textColor="@color/jeopardyWhite"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout1"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+
+        <TextView
+            android:id="@+id/cat4Title_textView"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+        <TextView
+            android:id="@+id/cat5Title_textView"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:textColor="@color/jeopardyWhite"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="42dp" />
+
+        <TextView
+            android:id="@+id/cat6Title_textView"
+            android:layout_width="90dp"
+            android:layout_height="70dp"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:textColor="@color/jeopardyWhite"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="199dp"
+            tools:layout_editor_absoluteY="42dp" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -21,8 +21,6 @@ public class ResultsActivity extends AppCompatActivity {
 
 
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-    int score1, score2, score3;
-    String player1, player2, player3;
     @BindView(R.id.player1_textView)
     TextView player1TextView;
     @BindView(R.id.player2_textView)

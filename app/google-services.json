@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "987654588837",
+    "firebase_url": "https://jeopardygame-ca624.firebaseio.com",
+    "project_id": "jeopardygame-ca624",
+    "storage_bucket": "jeopardygame-ca624.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987654588837:android:960b0028399ac44f",
+        "android_client_info": {
+          "package_name": "com.example.zane.jeopardygame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987654588837-hdtb9c8ufmottm7am3tng8vcf34ig95f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zane.jeopardygame",
+            "certificate_hash": "228015249436bd003aefe7dcd3f8e1015244b755"
+          }
+        },
+        {
+          "client_id": "987654588837-shlc972r3lff5chgjspqp9ljjnijlgkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6BYVBcb1teoP9BVp5sKkbTysbaliWCEQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987654588837-shlc972r3lff5chgjspqp9ljjnijlgkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

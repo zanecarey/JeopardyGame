@@ -26,16 +26,10 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
 
     @BindView(R.id.player1Score_textView)
     TextView player1ScoreTextView;
-    @BindView(R.id.player1ScoreValue_textView)
-    TextView player1ScoreValueTextView;
     @BindView(R.id.player2Score_textView)
     TextView player2ScoreTextView;
-    @BindView(R.id.player2ScoreValue_textView)
-    TextView player2ScoreValueTextView;
     @BindView(R.id.player3Score_textView)
     TextView player3ScoreTextView;
-    @BindView(R.id.player3ScoreValue_textView)
-    TextView player3ScoreValueTextView;
     @BindView(R.id.cat1Title_textView)
     TextView cat1TitleTextView;
     @BindView(R.id.cat2Title_textView)
@@ -159,9 +153,9 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 player2 = dataSnapshot.child("player2Email").getValue(String.class);
                 player3 = dataSnapshot.child("player3Email").getValue(String.class);
 
-                player1ScoreTextView.setText(player1);
-                player2ScoreTextView.setText(player2);
-                player3ScoreTextView.setText(player3);
+                player1ScoreTextView.setText(player1 + " $");
+                player2ScoreTextView.setText(player2 + " $");
+                player3ScoreTextView.setText(player3 + " $");
 
                 //set category titles
                 cat1TitleTextView.setText(dataSnapshot.child("cat1").getValue(String.class));
@@ -260,7 +254,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         player1ScoreRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                player1ScoreValueTextView.setText("$"+dataSnapshot.getValue(Integer.class));
+                player1ScoreTextView.setText(player1 + " $" + dataSnapshot.getValue(Integer.class));
             }
 
             @Override
@@ -271,7 +265,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         player2ScoreRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                player2ScoreValueTextView.setText("$"+dataSnapshot.getValue(Integer.class));
+                player2ScoreTextView.setText(player2 + " $" + dataSnapshot.getValue(Integer.class));
             }
 
             @Override
@@ -282,7 +276,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         player3ScoreRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                player3ScoreValueTextView.setText("$"+dataSnapshot.getValue(Integer.class));
+                player3ScoreTextView.setText(player3 + " $" + dataSnapshot.getValue(Integer.class));
             }
 
             @Override
@@ -353,7 +347,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue(Boolean.class) == true){
-                    Intent intent = new Intent(MultiplayerGameScreenActivity.this, MainActivity.class);
+                    Intent intent = new Intent(MultiplayerGameScreenActivity.this, ResultsActivity.class);
                     startActivity(intent);
                 }
             }
@@ -583,11 +577,11 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 } else {
                     rootRef.child("playerTurn").setValue(1);
                 }
+                yourTurn = false;
+
                 //increment game q counter
                 qCount++;
                 rootRef.child("questionTotal").setValue(qCount);
-
-                //yourTurn = false;
                 AlertDialog dialog = builder2.create();
                 dialog.show();
 
@@ -612,6 +606,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         builder.setTitle("Leave Game?");
         builder.setPositiveButton("Yes", (dialogInterface, i) -> {
             //flag for game being cancelled
+            //resetValues();
             rootRef.child("gameEnded").setValue(true);
         });
         builder.setNegativeButton("No", (dialogInterface, i) -> {
@@ -619,6 +614,20 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void resetValues() {
+        rootRef.child("currentQ").setValue(0);
+        rootRef.child("player1Email").setValue("");
+        rootRef.child("player2Email").setValue("");
+        rootRef.child("player3Email").setValue("");
+        rootRef.child("player1Score").setValue(0);
+        rootRef.child("player2Score").setValue(0);
+        rootRef.child("player3Score").setValue(0);
+        rootRef.child("playerTurn").setValue(1);
+        rootRef.child("questionTotal").setValue(0);
+        rootRef.child("gameStarted").setValue("");
+        rootRef.child("gameEnded").setValue(false);
     }
 }
 

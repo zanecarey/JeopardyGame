@@ -16,18 +16,22 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/currentTurn_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start">
+            android:layout_gravity="start"
+            android:layout_marginStart="8dp"
+            android:background="@color/jeopardyBlue">
 
             <TextView
                 android:id="@+id/currentTurn_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/border"
+                android:padding="4dp"
                 android:text="@string/current_turn"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />
@@ -41,28 +45,23 @@
 
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@color/jeopardyBlue">
 
             <TextView
                 android:id="@+id/player1Score_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:background="@drawable/border"
-                android:padding="2dp"
+                android:padding="6dp"
                 android:text="@string/player_1"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/player1ScoreValue_textView"
-                android:text="@string/$"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
 
             <TextView
                 android:id="@+id/player2Score_textView"
@@ -70,17 +69,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/border"
+                android:padding="6dp"
                 android:text="@string/player_2"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/player2ScoreValue_textView"
-                android:text="@string/$"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
 
             <TextView
                 android:id="@+id/player3Score_textView"
@@ -88,17 +80,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/border"
+                android:padding="6dp"
                 android:text="@string/player_3"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <TextView
-                android:id="@+id/player3ScoreValue_textView"
-                android:text="@string/$"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+
         </LinearLayout>
 
         <LinearLayout

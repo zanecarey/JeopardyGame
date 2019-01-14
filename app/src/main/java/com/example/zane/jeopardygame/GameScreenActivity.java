@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zane.jeopardygame.model.Categories;
@@ -37,8 +38,6 @@ public class GameScreenActivity extends AppCompatActivity {
     TextView cat3TitleTextView;
     @BindView(R.id.player1Score_textView)
     TextView totalScoreTextView;
-    @BindView(R.id.player1ScoreValue_textView)
-    TextView totalScoreValueTextView;
     @BindView(R.id.cat1Q1_textView)
     TextView cat1Q1textView;
     @BindView(R.id.cat1Q2_textView)
@@ -111,12 +110,10 @@ public class GameScreenActivity extends AppCompatActivity {
     TextView currentTurnNameTextView;
     @BindView(R.id.player2Score_textView)
     TextView player2ScoreTextView;
-    @BindView(R.id.player2ScoreValue_textView)
-    TextView player2ScoreValueTextView;
     @BindView(R.id.player3Score_textView)
     TextView player3ScoreTextView;
-    @BindView(R.id.player3ScoreValue_textView)
-    TextView player3ScoreValueTextView;
+    @BindView(R.id.currentTurn_layout)
+    LinearLayout currentTurn_layout;
 
 
     private ArrayList<String> categoryTitles = new ArrayList<>();
@@ -157,11 +154,10 @@ public class GameScreenActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //deactivate multiplayer views
+        currentTurn_layout.setVisibility(View.INVISIBLE);
         currentTurnTextView.setVisibility(View.INVISIBLE);
         player2ScoreTextView.setVisibility(View.INVISIBLE);
         player3ScoreTextView.setVisibility(View.INVISIBLE);
-        player2ScoreValueTextView.setVisibility(View.INVISIBLE);
-        player3ScoreValueTextView.setVisibility(View.INVISIBLE);
 
         getCategories();
     }
@@ -189,7 +185,7 @@ public class GameScreenActivity extends AppCompatActivity {
                 ArrayList<Categories> results = response.body();
                 for (int i = 0; i < 6; i++) {
                     int index = new Random().nextInt(100);
-                    if (results.get(index).getClues_count() >= 5 && !categoryIDs.contains(results.get(index).getId())) {
+                    if (results.get(index).getClues_count() >= 5 && !categoryIDs.contains(results.get(index).getId()) && results.get(index).getTitle().length() < 15) {
 
                         categoryTitles.add(results.get(index).getTitle());
                         categoryIDs.add(results.get(index).getId());
@@ -466,12 +462,12 @@ public class GameScreenActivity extends AppCompatActivity {
             String answer = editText.getText().toString().toLowerCase();
             if (answer.equals(correct)) {
                 TOTAL_SCORE += val;
-                totalScoreValueTextView.setText("" + TOTAL_SCORE);
+                totalScoreTextView.setText("Score: $" + TOTAL_SCORE);
                 builder2.setTitle("Correct!");
                 builder2.setMessage(val + " points added");
             } else {
                 TOTAL_SCORE -= val;
-                totalScoreValueTextView.setText("" + TOTAL_SCORE);
+                totalScoreTextView.setText("Score: $" + TOTAL_SCORE);
                 builder2.setTitle("Incorrect!");
                 builder2.setMessage("Correct answer was: " + correct);
             }

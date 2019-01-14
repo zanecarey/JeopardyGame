@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn})
+    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn, R.id.empty_btn})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -78,7 +78,23 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(mainActivityLayout, "Lobby full!", Snackbar.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.empty_btn:
+                resetValues();
         }
+    }
+
+    private void resetValues() {
+        rootRef.child("currentQ").setValue(0);
+        rootRef.child("player1Email").setValue("");
+        rootRef.child("player2Email").setValue("");
+        rootRef.child("player3Email").setValue("");
+        rootRef.child("player1Score").setValue(0);
+        rootRef.child("player2Score").setValue(0);
+        rootRef.child("player3Score").setValue(0);
+        rootRef.child("playerTurn").setValue(1);
+        rootRef.child("questionTotal").setValue(0);
+        rootRef.child("gameStarted").setValue("");
+        rootRef.child("gameEnded").setValue(false);
     }
 }
 

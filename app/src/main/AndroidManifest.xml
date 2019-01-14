@@ -23,9 +23,14 @@
             android:name=".GameScreenActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".QuestionDisplayActivity" />
-        <activity android:name=".PrepareGameActivity" />
-        <activity android:name=".MultiplayerGameScreenActivity" />
+        <activity
+            android:name=".PrepareGameActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".MultiplayerGameScreenActivity"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".ResultsActivity"></activity>
     </application>
 

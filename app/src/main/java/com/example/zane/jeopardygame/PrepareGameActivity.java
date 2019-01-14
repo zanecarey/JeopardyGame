@@ -36,13 +36,6 @@ public class PrepareGameActivity extends AppCompatActivity {
 
     private static final String BASE_URL = "http://jservice.io/";
 
-
-    @BindView(R.id.playerName1_textView)
-    TextView playerName1TextView;
-    @BindView(R.id.playerName2_textView)
-    TextView playerName2TextView;
-    @BindView(R.id.playerName3_textView)
-    TextView playerName3TextView;
     @BindView(R.id.start_btn)
     Button startBtn;
     @BindView(R.id.prepareGame_layout)
@@ -59,6 +52,12 @@ public class PrepareGameActivity extends AppCompatActivity {
     TextView cat5TitleTextView;
     @BindView(R.id.cat6Title_textView)
     TextView cat6TitleTextView;
+    @BindView(R.id.player1_textView)
+    TextView player1TextView;
+    @BindView(R.id.player2_textView)
+    TextView player2TextView;
+    @BindView(R.id.player3_textView)
+    TextView player3TextView;
 
 
     private ArrayList<String> categoryTitles = new ArrayList<>();
@@ -89,9 +88,13 @@ public class PrepareGameActivity extends AppCompatActivity {
     private ArrayList<String> cat6Answers = new ArrayList<>();
 
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference player1Ref = rootRef.child("player1Email");
+    DatabaseReference player2Ref = rootRef.child("player2Email");
+    DatabaseReference player3Ref = rootRef.child("player3Email");
     DatabaseReference gameStartedRef = rootRef.child("gameStarted");
 
     private int playerSlot;
+    private String player1 = "" , player2 = "" , player3 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,12 +102,14 @@ public class PrepareGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_prepare_game);
         ButterKnife.bind(this);
 
-        rootRef.addValueEventListener(new ValueEventListener() {
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                playerName1TextView.setText(dataSnapshot.child("player1Email").getValue(String.class));
-                playerName2TextView.setText(dataSnapshot.child("player2Email").getValue(String.class));
-                playerName3TextView.setText(dataSnapshot.child("player3Email").getValue(String.class));
+                player1 = dataSnapshot.child("player1Email").getValue(String.class);
+                player2 = dataSnapshot.child("player2Email").getValue(String.class);
+                player3 = dataSnapshot.child("player3Email").getValue(String.class);
+
+
             }
 
             @Override
@@ -112,7 +117,9 @@ public class PrepareGameActivity extends AppCompatActivity {
 
             }
         });
+
         setPlayerSlot();
+
         gameStartedRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -129,23 +136,60 @@ public class PrepareGameActivity extends AppCompatActivity {
 
             }
         });
+
+        player1Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                player1TextView.setText("Player 1: " + dataSnapshot.getValue(String.class));
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        player2Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                player2TextView.setText("Player 2: " + dataSnapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        player3Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                player3TextView.setText("Player 3: " + dataSnapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     private void setPlayerSlot() {
-        if (playerName1TextView.getText().toString().equals("")) {
+        if(player1.equals("")){
             getCategories();
-            resetValues();
             rootRef.child("player1Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             playerSlot = 1;
-            playerName1TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        } else if (playerName2TextView.getText().toString().equals("")) {
+        } else if (player2.equals("")){
             rootRef.child("player2Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             playerSlot = 2;
-            playerName2TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        } else if (playerName3TextView.getText().toString().equals("")) {
+        } else if (player3.equals("")) {
             rootRef.child("player3Email").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
             playerSlot = 3;
-            playerName3TextView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         }
     }
 
@@ -171,11 +215,10 @@ public class PrepareGameActivity extends AppCompatActivity {
                 ArrayList<Categories> results = response.body();
                 for (int i = 0; i < 6; i++) {
                     int index = new Random().nextInt(100);
-                    if (results.get(index).getClues_count() >= 5 && !categoryIDs.contains(results.get(index).getId())) {
+                    if (results.get(index).getClues_count() >= 5 && !categoryIDs.contains(results.get(index).getId()) && results.get(index).getTitle().length() < 15) {
 
                         categoryTitles.add(results.get(index).getTitle());
                         categoryIDs.add(results.get(index).getId());
-
 
                     } else {
                         i--;
@@ -412,13 +455,13 @@ public class PrepareGameActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", (dialogInterface, i) -> {
             //remove player from lobby list
             if (playerSlot == 1) {
-                playerName1TextView.setText("");
+                player1TextView.setText("Player 1: ");
                 rootRef.child("player1Email").setValue("");
             } else if (playerSlot == 2) {
-                playerName2TextView.setText("");
+                player2TextView.setText("Player 2: ");
                 rootRef.child("player2Email").setValue("");
             } else {
-                playerName3TextView.setText("");
+                player3TextView.setText("Player 3: ");
                 rootRef.child("player3Email").setValue("");
             }
 

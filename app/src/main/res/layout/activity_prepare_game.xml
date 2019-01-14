@@ -51,40 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
 
-    <TextView
-        android:id="@+id/playerName1_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/border"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/playerName2_textView"
-        app:layout_constraintStart_toStartOf="@+id/playerName2_textView"
-        app:layout_constraintTop_toBottomOf="@+id/lobby_textView" />
-
-    <TextView
-        android:id="@+id/playerName2_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:background="@drawable/border"
-        android:gravity="start"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/playerName3_textView"
-        app:layout_constraintStart_toStartOf="@+id/playerName3_textView"
-        app:layout_constraintTop_toBottomOf="@+id/playerName1_textView" />
-
-    <TextView
-        android:id="@+id/playerName3_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:background="@drawable/border"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerName2_textView" />
-
 
     <Button
         android:id="@+id/start_btn"
@@ -103,9 +69,11 @@
 
     <TextView
         android:id="@+id/lobby_textView"
-        android:layout_width="384dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="17dp"
         android:background="@drawable/border"
         android:gravity="center"
         android:padding="4dp"
@@ -113,33 +81,36 @@
         android:textColor="@color/jeopardyWhite"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/playerName1_textView"
-        app:layout_constraintStart_toStartOf="@+id/playerName1_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/categories_textView"
-        android:layout_width="384dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/border"
         android:gravity="center"
         android:text="@string/categories"
         android:textColor="@color/jeopardyWhite"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/playerName3_textView"
-        app:layout_constraintStart_toStartOf="@+id/playerName3_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player3_textView" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="35dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/categories_textView"
         app:layout_constraintTop_toBottomOf="@+id/categories_textView">
 
         <TextView

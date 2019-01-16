@@ -2,6 +2,7 @@ package com.example.zane.jeopardygame;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -114,7 +115,8 @@ public class GameScreenActivity extends AppCompatActivity {
     TextView player3ScoreTextView;
     @BindView(R.id.currentTurn_layout)
     LinearLayout currentTurn_layout;
-
+    @BindView(R.id.game_layout)
+    LinearLayout game_layout;
 
     private ArrayList<String> categoryTitles = new ArrayList<>();
     private ArrayList<Integer> categoryIDs = new ArrayList<>();
@@ -147,6 +149,9 @@ public class GameScreenActivity extends AppCompatActivity {
     //running total score of game
     public static int TOTAL_SCORE = 0;
 
+    //list of question textviews
+    private ArrayList<TextView> questionTextViewsList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,7 +164,46 @@ public class GameScreenActivity extends AppCompatActivity {
         player2ScoreTextView.setVisibility(View.INVISIBLE);
         player3ScoreTextView.setVisibility(View.INVISIBLE);
 
-        getCategories();
+        addTextViews();
+
+        //restore values if activity is out of foreground
+        if(savedInstanceState != null){
+
+            totalScoreTextView.setText("Score: $" + TOTAL_SCORE);
+
+            categoryTitles = savedInstanceState.getStringArrayList("categoryTitles");
+
+            cat1Questions = savedInstanceState.getStringArrayList("cat1Questions");
+            cat1Answers = savedInstanceState.getStringArrayList("cat1Answers");
+
+            cat2Questions = savedInstanceState.getStringArrayList("cat2Questions");
+            cat2Answers = savedInstanceState.getStringArrayList("cat2Answers");
+
+            cat3Questions = savedInstanceState.getStringArrayList("cat3Questions");
+            cat3Answers = savedInstanceState.getStringArrayList("cat3Answers");
+
+            cat4Questions = savedInstanceState.getStringArrayList("cat4Questions");
+            cat4Answers = savedInstanceState.getStringArrayList("cat4Answers");
+
+            cat5Questions = savedInstanceState.getStringArrayList("cat5Questions");
+            cat5Answers = savedInstanceState.getStringArrayList("cat5Answers");
+
+            cat6Questions = savedInstanceState.getStringArrayList("cat6Questions");
+            cat6Answers = savedInstanceState.getStringArrayList("cat6Answers");
+
+            //restore textview statuses
+            boolean[] tvs = savedInstanceState.getBooleanArray("textViewStatuses");
+            for(int i = 0; i < 30; i++){
+                if(!tvs[i]){
+                    questionTextViewsList.get(i).setTextColor(Color.GRAY);
+                    questionTextViewsList.get(i).setEnabled(false);
+                }
+            }
+            initCardViews();
+        }
+        else {
+            getCategories();
+        }
     }
 
     //get categories
@@ -268,7 +312,6 @@ public class GameScreenActivity extends AppCompatActivity {
 
     //display card view categories, expandable
     private void initCardViews() {
-
         cat1TitleTextView.append(categoryTitles.get(0));
         cat2TitleTextView.append(categoryTitles.get(1));
         cat3TitleTextView.append(categoryTitles.get(2));
@@ -486,5 +529,79 @@ public class GameScreenActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //save all game state data
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("score", TOTAL_SCORE);
+
+        outState.putStringArrayList("categoryTitles", categoryTitles);
+
+        outState.putStringArrayList("cat1Questions", cat1Questions);
+        outState.putStringArrayList("cat1Answers", cat1Answers);
+
+        outState.putStringArrayList("cat2Questions", cat2Questions);
+        outState.putStringArrayList("cat2Answers", cat2Answers);
+
+        outState.putStringArrayList("cat3Questions", cat3Questions);
+        outState.putStringArrayList("cat3Answers", cat3Answers);
+
+        outState.putStringArrayList("cat4Questions", cat4Questions);
+        outState.putStringArrayList("cat4Answers", cat4Answers);
+
+        outState.putStringArrayList("cat5Questions", cat5Questions);
+        outState.putStringArrayList("cat5Answers", cat5Answers);
+
+        outState.putStringArrayList("cat6Questions", cat6Questions);
+        outState.putStringArrayList("cat6Answers", cat6Answers);
+
+        boolean[] textViewStatuses = new boolean[30];
+        for(int i = 0 ; i < 30; i++){
+            if(questionTextViewsList.get(i).isEnabled()){
+                textViewStatuses[i] = true;
+            }
+        }
+        outState.putBooleanArray("textViewStatuses", textViewStatuses);
+    }
+
+    private void addTextViews(){
+        questionTextViewsList.add(cat1Q1textView);
+        questionTextViewsList.add(cat1Q2textView);
+        questionTextViewsList.add(cat1Q3textView);
+        questionTextViewsList.add(cat1Q4textView);
+        questionTextViewsList.add(cat1Q5textView);
+
+        questionTextViewsList.add(cat2Q1TextView);
+        questionTextViewsList.add(cat2Q2TextView);
+        questionTextViewsList.add(cat2Q3TextView);
+        questionTextViewsList.add(cat2Q4TextView);
+        questionTextViewsList.add(cat2Q5TextView);
+
+        questionTextViewsList.add(cat3Q1TextView);
+        questionTextViewsList.add(cat3Q2TextView);
+        questionTextViewsList.add(cat3Q3TextView);
+        questionTextViewsList.add(cat3Q4TextView);
+        questionTextViewsList.add(cat3Q5TextView);
+
+        questionTextViewsList.add(cat4Q1TextView);
+        questionTextViewsList.add(cat4Q2TextView);
+        questionTextViewsList.add(cat4Q3TextView);
+        questionTextViewsList.add(cat4Q4TextView);
+        questionTextViewsList.add(cat4Q5TextView);
+
+        questionTextViewsList.add(cat5Q1TextView);
+        questionTextViewsList.add(cat5Q2TextView);
+        questionTextViewsList.add(cat5Q3TextView);
+        questionTextViewsList.add(cat5Q4TextView);
+        questionTextViewsList.add(cat5Q5TextView);
+
+        questionTextViewsList.add(cat6Q1TextView);
+        questionTextViewsList.add(cat6Q2TextView);
+        questionTextViewsList.add(cat6Q3TextView);
+        questionTextViewsList.add(cat6Q4TextView);
+        questionTextViewsList.add(cat6Q5TextView);
     }
 }

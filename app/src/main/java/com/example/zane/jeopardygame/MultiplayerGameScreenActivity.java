@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -126,7 +128,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
     String cat6Q1, cat6Q2, cat6Q3, cat6Q4, cat6Q5, cat6A1, cat6A2, cat6A3, cat6A4, cat6A5;
     String player1, player2, player3;
 
-    int playerScore = 0;
+    static int playerScore = 0;
     int playerSlot;
 
     boolean yourTurn = false;
@@ -134,6 +136,9 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
     String scoreTag;
 
     int qCount = 0;
+
+    //list of question textviews
+    private ArrayList<TextView> questionTextViewsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +148,20 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
 
         playerSlot = getPlayerSlot();
         scoreTag = "player" + playerSlot + "Score";
+
+        addTextViews();
+        if(savedInstanceState != null){
+
+            //restore textview statuses
+            boolean[] tvs = savedInstanceState.getBooleanArray("textViewStatuses");
+            for(int i = 0; i < 30; i++){
+                if(!tvs[i]){
+                    questionTextViewsList.get(i).setTextColor(Color.GRAY);
+                    questionTextViewsList.get(i).setEnabled(false);
+                }
+            }
+        }
+
         //retrieve all values from db
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -385,14 +404,15 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         } else {
             builder.setTitle("Question");
 
-
             AlertDialog.Builder builder2;
             builder2 = new AlertDialog.Builder(this, R.style.AlertDialog);
 
-
+            //add an edittext to type an answer in the dialog
             final EditText editText = new EditText(this);
             editText.setTextColor(getResources().getColor(R.color.jeopardyYellow));
             builder.setView(editText);
+
+            //values for accessing from dialog
             String rightAnswer = "";
             int qValue = 0;
             int viewID = view.getId();
@@ -570,14 +590,14 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 //update chosen q
                 rootRef.child("currentQ").setValue(viewID);
                 //update playerTurn
-                if (playerSlot == 1) {
-                    rootRef.child("playerTurn").setValue(2);
-                } else if (playerSlot == 2) {
-                    rootRef.child("playerTurn").setValue(3);
-                } else {
-                    rootRef.child("playerTurn").setValue(1);
-                }
-                yourTurn = false;
+//                if (playerSlot == 1) {
+//                    rootRef.child("playerTurn").setValue(2);
+//                } else if (playerSlot == 2) {
+//                    rootRef.child("playerTurn").setValue(3);
+//                } else {
+//                    rootRef.child("playerTurn").setValue(1);
+//                }
+//                yourTurn = false;
 
                 //increment game q counter
                 qCount++;
@@ -616,18 +636,56 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void resetValues() {
-        rootRef.child("currentQ").setValue(0);
-        rootRef.child("player1Email").setValue("");
-        rootRef.child("player2Email").setValue("");
-        rootRef.child("player3Email").setValue("");
-        rootRef.child("player1Score").setValue(0);
-        rootRef.child("player2Score").setValue(0);
-        rootRef.child("player3Score").setValue(0);
-        rootRef.child("playerTurn").setValue(1);
-        rootRef.child("questionTotal").setValue(0);
-        rootRef.child("gameStarted").setValue("");
-        rootRef.child("gameEnded").setValue(false);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //save all game state data
+        super.onSaveInstanceState(outState);
+
+        boolean[] textViewStatuses = new boolean[30];
+        for(int i = 0 ; i < 30; i++){
+            if(questionTextViewsList.get(i).isEnabled()){
+                textViewStatuses[i] = true;
+            }
+        }
+        outState.putBooleanArray("textViewStatuses", textViewStatuses);
+    }
+
+    private void addTextViews(){
+        questionTextViewsList.add(cat1Q1TextView);
+        questionTextViewsList.add(cat1Q2TextView);
+        questionTextViewsList.add(cat1Q3TextView);
+        questionTextViewsList.add(cat1Q4TextView);
+        questionTextViewsList.add(cat1Q5TextView);
+
+        questionTextViewsList.add(cat2Q1TextView);
+        questionTextViewsList.add(cat2Q2TextView);
+        questionTextViewsList.add(cat2Q3TextView);
+        questionTextViewsList.add(cat2Q4TextView);
+        questionTextViewsList.add(cat2Q5TextView);
+
+        questionTextViewsList.add(cat3Q1TextView);
+        questionTextViewsList.add(cat3Q2TextView);
+        questionTextViewsList.add(cat3Q3TextView);
+        questionTextViewsList.add(cat3Q4TextView);
+        questionTextViewsList.add(cat3Q5TextView);
+
+        questionTextViewsList.add(cat4Q1TextView);
+        questionTextViewsList.add(cat4Q2TextView);
+        questionTextViewsList.add(cat4Q3TextView);
+        questionTextViewsList.add(cat4Q4TextView);
+        questionTextViewsList.add(cat4Q5TextView);
+
+        questionTextViewsList.add(cat5Q1TextView);
+        questionTextViewsList.add(cat5Q2TextView);
+        questionTextViewsList.add(cat5Q3TextView);
+        questionTextViewsList.add(cat5Q4TextView);
+        questionTextViewsList.add(cat5Q5TextView);
+
+        questionTextViewsList.add(cat6Q1TextView);
+        questionTextViewsList.add(cat6Q2TextView);
+        questionTextViewsList.add(cat6Q3TextView);
+        questionTextViewsList.add(cat6Q4TextView);
+        questionTextViewsList.add(cat6Q5TextView);
     }
 }
 

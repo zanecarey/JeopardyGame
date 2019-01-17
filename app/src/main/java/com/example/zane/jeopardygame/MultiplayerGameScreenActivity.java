@@ -590,14 +590,14 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 //update chosen q
                 rootRef.child("currentQ").setValue(viewID);
                 //update playerTurn
-//                if (playerSlot == 1) {
-//                    rootRef.child("playerTurn").setValue(2);
-//                } else if (playerSlot == 2) {
-//                    rootRef.child("playerTurn").setValue(3);
-//                } else {
-//                    rootRef.child("playerTurn").setValue(1);
-//                }
-//                yourTurn = false;
+                if (playerSlot == 1) {
+                    rootRef.child("playerTurn").setValue(2);
+                } else if (playerSlot == 2) {
+                    rootRef.child("playerTurn").setValue(3);
+                } else {
+                    rootRef.child("playerTurn").setValue(1);
+                }
+                yourTurn = false;
 
                 //increment game q counter
                 qCount++;

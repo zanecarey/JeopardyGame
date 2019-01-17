@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SinglePlayerResults"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,17 +22,14 @@
         </activity>
         <activity
             android:name=".GameScreenActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PrepareGameActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MultiplayerGameScreenActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".ResultsActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".ResultsActivity" />
     </application>
 
 </manifest>

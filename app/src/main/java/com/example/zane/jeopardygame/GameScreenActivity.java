@@ -1,5 +1,6 @@
 package com.example.zane.jeopardygame;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -148,6 +149,9 @@ public class GameScreenActivity extends AppCompatActivity {
 
     //running total score of game
     public static int TOTAL_SCORE = 0;
+    //question total
+    public static int QUESTION_TOTAL = 0;
+
 
     //list of question textviews
     private ArrayList<TextView> questionTextViewsList = new ArrayList<>();
@@ -522,6 +526,14 @@ public class GameScreenActivity extends AppCompatActivity {
             TextView tv = findViewById(viewID);
             tv.setTextColor(Color.GRAY);
             findViewById(viewID).setEnabled(false);
+
+            //increment question counter
+            QUESTION_TOTAL++;
+            if(QUESTION_TOTAL==30){
+                Intent intent = new Intent(GameScreenActivity.this, SinglePlayerResults.class);
+                intent.putExtra("score", TOTAL_SCORE);
+                startActivity(intent);
+            }
         });
         builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
 
@@ -604,4 +616,6 @@ public class GameScreenActivity extends AppCompatActivity {
         questionTextViewsList.add(cat6Q4TextView);
         questionTextViewsList.add(cat6Q5TextView);
     }
+
+
 }

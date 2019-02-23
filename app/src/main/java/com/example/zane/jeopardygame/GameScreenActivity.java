@@ -171,7 +171,7 @@ public class GameScreenActivity extends AppCompatActivity {
         addTextViews();
 
         //restore values if activity is out of foreground
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
 
             totalScoreTextView.setText("Score: $" + TOTAL_SCORE);
 
@@ -197,15 +197,14 @@ public class GameScreenActivity extends AppCompatActivity {
 
             //restore textview statuses
             boolean[] tvs = savedInstanceState.getBooleanArray("textViewStatuses");
-            for(int i = 0; i < 30; i++){
-                if(!tvs[i]){
+            for (int i = 0; i < 30; i++) {
+                if (!tvs[i]) {
                     questionTextViewsList.get(i).setTextColor(Color.GRAY);
                     questionTextViewsList.get(i).setEnabled(false);
                 }
             }
             initCardViews();
-        }
-        else {
+        } else {
             getCategories();
         }
     }
@@ -277,31 +276,38 @@ public class GameScreenActivity extends AppCompatActivity {
                 public void onResponse(Call<ClueResults> call, Response<ClueResults> response) {
                     ArrayList<Clues> results = response.body().getClues();
                     for (int i = 0; i < results.size(); i++) {
-                        switch (index) {
-                            case 0:
-                                cat1Questions.add(results.get(i).getQuestion());
-                                cat1Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 1:
-                                cat2Questions.add(results.get(i).getQuestion());
-                                cat2Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 2:
-                                cat3Questions.add(results.get(i).getQuestion());
-                                cat3Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 3:
-                                cat4Questions.add(results.get(i).getQuestion());
-                                cat4Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 4:
-                                cat5Questions.add(results.get(i).getQuestion());
-                                cat5Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 5:
-                                cat6Questions.add(results.get(i).getQuestion());
-                                cat6Answers.add(results.get(i).getAnswer());
-                                break;
+                        if (results.get(i).getAnswer().equals(null) || results.get(i).getQuestion().equals(null)) {
+                            categoryTitles.clear();
+                            categoryIDs.clear();
+                            categoryClues_count.clear();
+                            getCategories();
+                        } else {
+                            switch (index) {
+                                case 0:
+                                    cat1Questions.add(results.get(i).getQuestion());
+                                    cat1Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 1:
+                                    cat2Questions.add(results.get(i).getQuestion());
+                                    cat2Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 2:
+                                    cat3Questions.add(results.get(i).getQuestion());
+                                    cat3Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 3:
+                                    cat4Questions.add(results.get(i).getQuestion());
+                                    cat4Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 4:
+                                    cat5Questions.add(results.get(i).getQuestion());
+                                    cat5Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 5:
+                                    cat6Questions.add(results.get(i).getQuestion());
+                                    cat6Answers.add(results.get(i).getAnswer());
+                                    break;
+                            }
                         }
                     }
                 }
@@ -529,7 +535,7 @@ public class GameScreenActivity extends AppCompatActivity {
 
             //increment question counter
             QUESTION_TOTAL++;
-            if(QUESTION_TOTAL==30){
+            if (QUESTION_TOTAL == 30) {
                 Intent intent = new Intent(GameScreenActivity.this, SinglePlayerResults.class);
                 intent.putExtra("score", TOTAL_SCORE);
                 startActivity(intent);
@@ -571,15 +577,15 @@ public class GameScreenActivity extends AppCompatActivity {
         outState.putStringArrayList("cat6Answers", cat6Answers);
 
         boolean[] textViewStatuses = new boolean[30];
-        for(int i = 0 ; i < 30; i++){
-            if(questionTextViewsList.get(i).isEnabled()){
+        for (int i = 0; i < 30; i++) {
+            if (questionTextViewsList.get(i).isEnabled()) {
                 textViewStatuses[i] = true;
             }
         }
         outState.putBooleanArray("textViewStatuses", textViewStatuses);
     }
 
-    private void addTextViews(){
+    private void addTextViews() {
         questionTextViewsList.add(cat1Q1textView);
         questionTextViewsList.add(cat1Q2textView);
         questionTextViewsList.add(cat1Q3textView);

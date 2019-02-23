@@ -216,7 +216,6 @@ public class PrepareGameActivity extends AppCompatActivity {
                 for (int i = 0; i < 6; i++) {
                     int index = new Random().nextInt(100);
                     if (results.get(index).getClues_count() >= 5 && !categoryIDs.contains(results.get(index).getId()) && results.get(index).getTitle().length() < 15) {
-
                         categoryTitles.add(results.get(index).getTitle());
                         categoryIDs.add(results.get(index).getId());
 
@@ -260,31 +259,38 @@ public class PrepareGameActivity extends AppCompatActivity {
                 public void onResponse(Call<ClueResults> call, Response<ClueResults> response) {
                     ArrayList<Clues> results = response.body().getClues();
                     for (int i = 0; i < results.size(); i++) {
-                        switch (index) {
-                            case 0:
-                                cat1Questions.add(results.get(i).getQuestion());
-                                cat1Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 1:
-                                cat2Questions.add(results.get(i).getQuestion());
-                                cat2Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 2:
-                                cat3Questions.add(results.get(i).getQuestion());
-                                cat3Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 3:
-                                cat4Questions.add(results.get(i).getQuestion());
-                                cat4Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 4:
-                                cat5Questions.add(results.get(i).getQuestion());
-                                cat5Answers.add(results.get(i).getAnswer());
-                                break;
-                            case 5:
-                                cat6Questions.add(results.get(i).getQuestion());
-                                cat6Answers.add(results.get(i).getAnswer());
-                                break;
+                        if (results.get(i).getAnswer().equals(null) || results.get(i).getQuestion().equals(null)) {
+                            categoryTitles.clear();
+                            categoryIDs.clear();
+                            getCategories();
+                        } else {
+                            switch (index) {
+                                //check if q is null
+                                case 0:
+                                    cat1Questions.add(results.get(i).getQuestion());
+                                    cat1Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 1:
+                                    cat2Questions.add(results.get(i).getQuestion());
+                                    cat2Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 2:
+                                    cat3Questions.add(results.get(i).getQuestion());
+                                    cat3Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 3:
+                                    cat4Questions.add(results.get(i).getQuestion());
+                                    cat4Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 4:
+                                    cat5Questions.add(results.get(i).getQuestion());
+                                    cat5Answers.add(results.get(i).getAnswer());
+                                    break;
+                                case 5:
+                                    cat6Questions.add(results.get(i).getQuestion());
+                                    cat6Answers.add(results.get(i).getAnswer());
+                                    break;
+                            }
                         }
                     }
                 }

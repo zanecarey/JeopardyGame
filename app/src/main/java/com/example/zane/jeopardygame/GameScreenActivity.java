@@ -513,7 +513,9 @@ public class GameScreenActivity extends AppCompatActivity {
         builder.setPositiveButton("Ok", (dialogInterface, i) -> {
 
             String answer = editText.getText().toString().toLowerCase();
-            if (answer.equals(correct)) {
+            //remove html tags like <i> from answer
+            String correctTrim = android.text.Html.fromHtml(correct).toString();
+            if (answer.equals(correctTrim)) {
                 TOTAL_SCORE += val;
                 totalScoreTextView.setText("Score: $" + TOTAL_SCORE);
                 builder2.setTitle("Correct!");

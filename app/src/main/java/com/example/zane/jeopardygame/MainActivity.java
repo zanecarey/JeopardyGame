@@ -8,6 +8,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference player3Ref = rootRef.child("player3Email");
     String player3 = "";
+    @BindView(R.id.jeopardyLogo)
+    ImageView jeopardyLogo;
+    @BindView(R.id.alexPic)
+    ImageView alexPic;
+    @BindView(R.id.empty_btn)
+    Button emptyBtn;
+    @BindView(R.id.poweredby_textView)
+    TextView poweredbyTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.startMultiplayerGame_btn:
-                if(player3.equals("")){
+                if (player3.equals("")) {
                     intent = new Intent(MainActivity.this, PrepareGameActivity.class);
                     startActivity(intent);
                 } else {

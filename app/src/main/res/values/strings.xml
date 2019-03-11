@@ -17,4 +17,8 @@
     <string name="start_game">Start Game</string>
     <string name="lobby">Lobby</string>
     <string name="categories">Categories</string>
+    <string name="play_singleplayer">Play Singleplayer</string>
+    <string name="play_multiplayer">Play Multiplayer</string>
+    <string name="reset">reset</string>
+    <string name="powered_by_jservice_io">powered by Jservice.io</string>
 </resources>

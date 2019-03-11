@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/startMultiplayerGame_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/jeopardyLogo" />
 
     <Button
         android:id="@+id/startMultiplayerGame_btn"
@@ -33,13 +33,13 @@
         android:text="Play with friends"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/alexPic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startGame_btn" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/alexPic"
         android:layout_width="155dp"
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/alex" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/jeopardyLogo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -71,8 +71,8 @@
         android:layout_marginBottom="31dp"
         android:text="powered by Jservice.io"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/alexPic"
+        app:layout_constraintTop_toBottomOf="@+id/alexPic" />
 
     <Button
         android:id="@+id/empty_btn"
@@ -83,7 +83,7 @@
         android:text="reset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/jeopardyLogo" />
 
 
 </android.support.constraint.ConstraintLayout>

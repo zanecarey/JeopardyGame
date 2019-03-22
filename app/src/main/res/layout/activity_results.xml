@@ -19,9 +19,7 @@
         android:background="@drawable/border"
         android:gravity="center"
         android:padding="6dp"
-        android:text="Results"
-        android:textAllCaps="true"
-        android:textColor="@color/jeopardyWhite"
+        android:text="@string/results"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +34,6 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/results_textView"
         app:layout_constraintTop_toBottomOf="@+id/results_textView" />
@@ -48,7 +45,6 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/player1Score_textView"
         app:layout_constraintTop_toBottomOf="@+id/player1Score_textView" />
@@ -60,7 +56,6 @@
         android:layout_marginTop="23dp"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/player2Score_textView"
         app:layout_constraintTop_toBottomOf="@+id/player2Score_textView" />
@@ -71,7 +66,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/player1_textView"
         app:layout_constraintTop_toBottomOf="@+id/player1_textView" />
@@ -82,7 +76,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/player2_textView"
         app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
@@ -93,7 +86,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/player3_textView"
         app:layout_constraintTop_toBottomOf="@+id/player3_textView" />
@@ -106,8 +98,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/border"
         android:padding="6dp"
-        android:text="Done"
-        android:textAllCaps="true"
+        android:text="@string/done"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/player3Score_textView"

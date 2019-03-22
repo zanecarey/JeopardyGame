@@ -162,6 +162,7 @@ public class GameScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
         ButterKnife.bind(this);
 
+        totalScoreTextView.setText("Score: ");
         //deactivate multiplayer views
         currentTurn_layout.setVisibility(View.INVISIBLE);
         currentTurnTextView.setVisibility(View.INVISIBLE);
@@ -276,11 +277,12 @@ public class GameScreenActivity extends AppCompatActivity {
                 public void onResponse(Call<ClueResults> call, Response<ClueResults> response) {
                     ArrayList<Clues> results = response.body().getClues();
                     for (int i = 0; i < results.size(); i++) {
-                        if (results.get(i).getAnswer().equals(null) || results.get(i).getQuestion().equals(null)) {
+                        if (results.get(i).getAnswer().equals("") || results.get(i).getQuestion().equals("")) {
                             categoryTitles.clear();
                             categoryIDs.clear();
                             categoryClues_count.clear();
                             getCategories();
+                            break;
                         } else {
                             switch (index) {
                                 case 0:

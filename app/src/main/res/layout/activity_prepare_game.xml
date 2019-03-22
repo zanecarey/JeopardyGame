@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/prepareGame_layout"
@@ -7,7 +7,21 @@
     android:layout_height="match_parent"
     android:background="#000"
     tools:context=".PrepareGameActivity"
-    tools:layout_editor_absoluteY="81dp">
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lobby_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="@string/lobby"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/player1_textView"
@@ -20,8 +34,7 @@
         android:text="@string/pl_1"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lobby_textView" />
+        />
 
     <TextView
         android:id="@+id/player2_textView"
@@ -34,8 +47,7 @@
         android:text="@string/pl_2"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1_textView" />
+        />
 
     <TextView
         android:id="@+id/player3_textView"
@@ -48,72 +60,29 @@
         android:text="@string/pl_3"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player2_textView" />
+        />
 
-
-    <Button
-        android:id="@+id/start_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/border"
-        android:padding="4dp"
-        android:text="@string/start_game"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-
-    <TextView
-        android:id="@+id/lobby_textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/border"
-        android:gravity="center"
-        android:padding="4dp"
-        android:text="@string/lobby"
-        android:textAllCaps="true"
-        android:textColor="@color/jeopardyWhite"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/categories_textView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/border"
         android:gravity="center"
         android:text="@string/categories"
-        android:textAllCaps="true"
-        android:textColor="@color/jeopardyWhite"
         android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player3_textView" />
+        android:textStyle="bold" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="9dp"
-        android:layout_marginEnd="35dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/categories_textView"
-        app:layout_constraintTop_toBottomOf="@+id/categories_textView">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/cat1Title_textView"
@@ -123,9 +92,7 @@
             android:gravity="center"
             android:textColor="@color/jeopardyWhite"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="42dp" />
+            android:textStyle="bold" />
 
 
         <TextView
@@ -136,9 +103,7 @@
             android:gravity="center"
             android:textColor="@color/jeopardyWhite"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="104dp"
-            tools:layout_editor_absoluteY="42dp" />
+            android:textStyle="bold" />
 
 
         <TextView
@@ -149,9 +114,7 @@
             android:gravity="center"
             android:textColor="@color/jeopardyWhite"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="199dp"
-            tools:layout_editor_absoluteY="42dp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -159,10 +122,9 @@
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout1"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+        android:orientation="horizontal">
 
 
         <TextView
@@ -173,9 +135,7 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="199dp"
-            tools:layout_editor_absoluteY="42dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/cat5Title_textView"
@@ -185,9 +145,7 @@
             android:gravity="center"
             android:textColor="@color/jeopardyWhite"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="199dp"
-            tools:layout_editor_absoluteY="42dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/cat6Title_textView"
@@ -197,9 +155,20 @@
             android:gravity="center"
             android:textColor="@color/jeopardyWhite"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="199dp"
-            tools:layout_editor_absoluteY="42dp" />
+            android:textStyle="bold" />
+
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/border"
+        android:padding="4dp"
+        android:text="@string/start_game"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

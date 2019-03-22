@@ -21,4 +21,8 @@
     <string name="play_multiplayer">Play Multiplayer</string>
     <string name="reset">reset</string>
     <string name="powered_by_jservice_io">powered by Jservice.io</string>
+    <string name="done">Done</string>
+    <string name="results">Results</string>
+    <string name="highscore">Highscore:</string>
+    <string name="your_score">Your Score:</string>
 </resources>

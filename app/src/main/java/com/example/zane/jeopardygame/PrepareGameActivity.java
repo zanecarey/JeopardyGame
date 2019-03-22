@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.zane.jeopardygame.model.Categories;
@@ -39,7 +40,7 @@ public class PrepareGameActivity extends AppCompatActivity {
     @BindView(R.id.start_btn)
     Button startBtn;
     @BindView(R.id.prepareGame_layout)
-    ConstraintLayout prepareGameLayout;
+    LinearLayout prepareGameLayout;
     @BindView(R.id.cat1Title_textView)
     TextView cat1TitleTextView;
     @BindView(R.id.cat2Title_textView)
@@ -259,10 +260,11 @@ public class PrepareGameActivity extends AppCompatActivity {
                 public void onResponse(Call<ClueResults> call, Response<ClueResults> response) {
                     ArrayList<Clues> results = response.body().getClues();
                     for (int i = 0; i < results.size(); i++) {
-                        if (results.get(i).getAnswer().equals(null) || results.get(i).getQuestion().equals(null)) {
+                        if (results.get(i).getAnswer().equals("") || results.get(i).getQuestion().equals("")) {
                             categoryTitles.clear();
                             categoryIDs.clear();
                             getCategories();
+                            break;
                         } else {
                             switch (index) {
                                 //check if q is null

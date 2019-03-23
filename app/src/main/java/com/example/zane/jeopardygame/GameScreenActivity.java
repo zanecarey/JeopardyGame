@@ -518,7 +518,7 @@ public class GameScreenActivity extends AppCompatActivity {
             String answer = editText.getText().toString().toLowerCase();
             //remove html tags like <i> from answer
             String correctTrim = android.text.Html.fromHtml(correct).toString();
-            if (answer.equals(correctTrim)) {
+            if (correctTrim.contains(answer))    {
                 TOTAL_SCORE += val;
                 totalScoreTextView.setText("Score: $" + TOTAL_SCORE);
                 builder2.setTitle("Correct!");

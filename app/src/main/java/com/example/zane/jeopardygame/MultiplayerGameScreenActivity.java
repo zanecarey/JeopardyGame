@@ -576,7 +576,10 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
             builder.setPositiveButton("Ok", (dialogInterface, i) -> {
 
                 String answer = editText.getText().toString().toLowerCase();
-                if (answer.equals(correct)) {
+                //remove html tags like <i> from answer
+                String correctTrim = android.text.Html.fromHtml(correct).toString();
+
+                if (correctTrim.contains(answer)) {
                     playerScore += val;
                     builder2.setTitle("Correct!");
                     builder2.setMessage(val + " points added");

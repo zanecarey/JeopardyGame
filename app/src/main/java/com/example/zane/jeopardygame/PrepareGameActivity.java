@@ -3,7 +3,6 @@ package com.example.zane.jeopardygame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.zane.jeopardygame.interfaces.CategoryResultsInterface;
+import com.example.zane.jeopardygame.interfaces.CluesInterface;
 import com.example.zane.jeopardygame.model.Categories;
 import com.example.zane.jeopardygame.model.ClueResults;
 import com.example.zane.jeopardygame.model.Clues;

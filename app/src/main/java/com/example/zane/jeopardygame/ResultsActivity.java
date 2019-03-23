@@ -21,6 +21,9 @@ public class ResultsActivity extends AppCompatActivity {
 
 
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference player1Ref = rootRef.child("player1Email");
+
+
     @BindView(R.id.player1_textView)
     TextView player1TextView;
     @BindView(R.id.player2_textView)
@@ -59,7 +62,23 @@ public class ResultsActivity extends AppCompatActivity {
 
             }
         });
-        resetValues();
+
+        player1Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                player1TextView.setText("Player 1: " + dataSnapshot.getValue(String.class));
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //resetValues();
     }
 
     private void resetValues() {

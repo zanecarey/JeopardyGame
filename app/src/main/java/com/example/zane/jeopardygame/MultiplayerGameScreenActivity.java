@@ -612,6 +612,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
         }
     }
 
+    //prevent q from onclick after answer submitted, change color to grey
     private void deactivateQ(int viewID) {
         TextView tv = findViewById(viewID);
         tv.setTextColor(Color.GRAY);

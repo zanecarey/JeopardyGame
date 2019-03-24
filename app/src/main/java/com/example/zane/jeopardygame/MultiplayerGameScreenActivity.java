@@ -579,7 +579,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 //remove html tags like <i> from answer
                 String correctTrim = android.text.Html.fromHtml(correct).toString();
 
-                if (correctTrim.contains(answer)) {
+                if (answer.equals(correctTrim)) {
                     playerScore += val;
                     builder2.setTitle("Correct!");
                     builder2.setMessage(val + " points added");

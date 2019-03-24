@@ -22,6 +22,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference player1Ref = rootRef.child("player1Email");
+    DatabaseReference endedRef = rootRef.child("gameEnded");
 
 
     @BindView(R.id.player1_textView)
@@ -78,6 +79,21 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
+        endedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         //resetValues();
     }
 
@@ -97,6 +113,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     @OnClick(R.id.button)
     public void onViewClicked() {
+        resetValues();
         Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
         startActivity(intent);
     }

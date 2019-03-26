@@ -627,6 +627,4 @@ public class GameScreenActivity extends AppCompatActivity {
         questionTextViewsList.add(cat6Q4TextView);
         questionTextViewsList.add(cat6Q5TextView);
     }
-
-
 }

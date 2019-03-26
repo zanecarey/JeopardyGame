@@ -93,8 +93,6 @@ public class ResultsActivity extends AppCompatActivity {
 
             }
         });
-
-        //resetValues();
     }
 
     private void resetValues() {

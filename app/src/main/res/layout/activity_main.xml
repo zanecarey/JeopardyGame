@@ -13,7 +13,7 @@
         android:id="@+id/startGame_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/border"
         android:padding="4dp"
         android:text="Play alone"
@@ -28,12 +28,12 @@
         android:id="@+id/startMultiplayerGame_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="298dp"
         android:background="@drawable/border"
         android:text="Play with friends"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/alexPic"
+        app:layout_constraintBottom_toTopOf="@+id/poweredby_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startGame_btn" />
@@ -41,23 +41,22 @@
     <ImageView
         android:id="@+id/alexPic"
         android:layout_width="155dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/poweredby_textView"
+        android:layout_height="466dp"
+        android:layout_marginTop="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startMultiplayerGame_btn"
+        app:layout_constraintTop_toTopOf="@+id/startMultiplayerGame_btn"
         app:srcCompat="@drawable/alex" />
 
     <ImageView
         android:id="@+id/jeopardyLogo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="172dp"
-        app:layout_constraintBottom_toTopOf="@+id/empty_btn"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="41dp"
+        app:layout_constraintBottom_toTopOf="@+id/startGame_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -67,23 +66,12 @@
         android:id="@+id/poweredby_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="30dp"
         android:text="powered by Jservice.io"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/alexPic"
-        app:layout_constraintTop_toBottomOf="@+id/alexPic" />
-
-    <Button
-        android:id="@+id/empty_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginBottom="189dp"
-        android:text="reset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jeopardyLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/startMultiplayerGame_btn" />
 
 
 </android.support.constraint.ConstraintLayout>

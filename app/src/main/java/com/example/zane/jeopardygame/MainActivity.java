@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout mainActivityLayout;
     @BindView(R.id.startMultiplayerGame_btn)
     Button startMultiplayerGameBtn;
+    @BindView(R.id.reset_btn)
+    Button reset_btn;
 
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference player3Ref = rootRef.child("player3Email");
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn})
+    @OnClick({R.id.startGame_btn, R.id.startMultiplayerGame_btn, R.id.reset_btn})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -87,8 +89,24 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(mainActivityLayout, "Lobby full!", Snackbar.LENGTH_SHORT).show();
                 }
                 break;
-
+            case R.id.reset_btn:
+                resetValues();
+                break;
         }
+    }
+
+    private void resetValues() {
+        rootRef.child("currentQ").setValue(0);
+        rootRef.child("player1Email").setValue("");
+        rootRef.child("player2Email").setValue("");
+        rootRef.child("player3Email").setValue("");
+        rootRef.child("player1Score").setValue(0);
+        rootRef.child("player2Score").setValue(0);
+        rootRef.child("player3Score").setValue(0);
+        rootRef.child("playerTurn").setValue(1);
+        rootRef.child("questionTotal").setValue(0);
+        rootRef.child("gameStarted").setValue("");
+        rootRef.child("gameEnded").setValue(false);
     }
 }
 

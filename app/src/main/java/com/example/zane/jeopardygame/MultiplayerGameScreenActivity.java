@@ -172,6 +172,8 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 player2 = dataSnapshot.child("player2Email").getValue(String.class);
                 player3 = dataSnapshot.child("player3Email").getValue(String.class);
 
+                currentTurnNameTextView.setText(player1);
+
                 player1ScoreTextView.setText(player1 + " $");
                 player2ScoreTextView.setText(player2 + " $");
                 player3ScoreTextView.setText(player3 + " $");

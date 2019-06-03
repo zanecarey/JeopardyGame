@@ -149,9 +149,9 @@ public class GameScreenActivity extends AppCompatActivity {
     private ArrayList<String> cat6Answers = new ArrayList<>();
 
     //running total score of game
-    public static int TOTAL_SCORE = 0;
+    public  int TOTAL_SCORE = 0;
     //question total
-    public static int QUESTION_TOTAL = 0;
+    public  int QUESTION_TOTAL = 0;
 
 
     //list of question textviews

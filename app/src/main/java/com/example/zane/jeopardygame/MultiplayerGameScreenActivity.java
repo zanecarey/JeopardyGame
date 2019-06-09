@@ -172,7 +172,7 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
                 player2 = dataSnapshot.child("player2Email").getValue(String.class);
                 player3 = dataSnapshot.child("player3Email").getValue(String.class);
 
-                currentTurnNameTextView.setText(player1);
+                currentTurnTextView.setText("Current Turn: " + player1);
 
                 player1ScoreTextView.setText(player1 + " $");
                 player2ScoreTextView.setText(player2 + " $");
@@ -328,11 +328,11 @@ public class MultiplayerGameScreenActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int turn = dataSnapshot.getValue(Integer.class);
                 if(turn == 1){
-                    currentTurnNameTextView.setText(player1);
+                    currentTurnTextView.setText("Current Turn: " +player1);
                 } else if (turn == 2){
-                    currentTurnNameTextView.setText(player2);
+                    currentTurnTextView.setText("Current Turn: " +player2);
                 } else {
-                    currentTurnNameTextView.setText(player3);
+                    currentTurnTextView.setText("Current Turn: " +player3);
                 }
                 if (turn == playerSlot) {
                     yourTurn = true;

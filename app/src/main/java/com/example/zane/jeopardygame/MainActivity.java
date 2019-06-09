@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.startGame_btn)
     Button startGameBtn;
     @BindView(R.id.mainActivity_layout)
-    ConstraintLayout mainActivityLayout;
+    LinearLayout mainActivityLayout;
     @BindView(R.id.startMultiplayerGame_btn)
     Button startMultiplayerGameBtn;
     @BindView(R.id.reset_btn)
